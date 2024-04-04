@@ -3,6 +3,7 @@ const app = express();
 const { Sequelize } = require("sequelize");
 
 const { port } = require("./config");
+const { database, username, password, host, dbPort } = require("./dataEnv");
 const PORT = port;
 
 // Routes
@@ -17,10 +18,11 @@ app.use(express.json());
 // Database connection (mariaDB)
 const sequelize = new Sequelize({
   dialect: "mysql",
-  database: "silver-micro",
-  username: "root",
-  password: "",
-  host: "localhost",
+  database: `${database}`,
+  username: `${username}`,
+  password: `${password}`,
+  host: `${host}`,
+  port: `${dbPort}`,
   logging: false,
 });
 

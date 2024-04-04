@@ -1,0 +1,10 @@
+// copy this file to back/dataEnv.js
+// this file is used to store the database connection information
+// fill it with your database credentials
+module.exports = {
+  database: "database_name",
+  username: "database_username",
+  password: "database_password",
+  host: "database_host", // usually localhost
+  dbPort: 1234, // usually 3306
+};
