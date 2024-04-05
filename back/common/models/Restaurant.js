@@ -1,70 +1,64 @@
 const { DataTypes } = require("sequelize");
-const { roles } = require("../../config");
 
-const UserModel = {
+const RestaurantModel = {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   },
-  lastname: {
+  name: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  firstname: {
+  maxCapacity: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  address: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  email: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    unique: true,
-  },
-  password: {
+  city: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  role: {
-    type: DataTypes.ENUM(roles.USER, roles.ADMIN),
+  zipCode: {
+    type: DataTypes.STRING,
     allowNull: false,
-    defaultValue: roles.USER,
+  },
+  rating: {
+    type: DataTypes.FLOAT,
+    allowNull: false,
   },
 };
 
-// export des différentes propriétés du modèle (créate, update, delete, etc.)
 module.exports = {
   initialize: (sequelize) => {
-    this.model = sequelize.define("user", UserModel);
+    this.model = sequelize.define("restaurant", RestaurantModel);
   },
 
   getModel: () => {
-    return UserModel;
+    return RestaurantModel;
   },
 
-  createUser: (user) => {
-    return this.model.create(user);
+  createRestaurant: (restaurant) => {
+    return this.model.create(restaurant);
   },
 
-  findUser: (query) => {
+  findRestaurant: (query) => {
     return this.model.findOne({
       where: query,
     });
   },
 
-  updateUser: (query, updatedValue) => {
+  updateRestaurant: (query, updatedValue) => {
     return this.model.update(updatedValue, {
       where: query,
     });
   },
 
-  findAllUsers: (query) => {
+  findAllRestaurants: (query) => {
     return this.model.findAll({
-      where: query,
-    });
-  },
-
-  deleteUser: (query) => {
-    return this.model.destroy({
       where: query,
     });
   },
