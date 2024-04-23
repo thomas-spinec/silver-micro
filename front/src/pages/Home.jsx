@@ -15,7 +15,7 @@ function Home() {
   // };
 
   return (
-    <div className="bg-red-800">
+    <div className="">
       <h1>Home</h1>
       <p>Welcome to our website</p>
       {/* {connected ? (

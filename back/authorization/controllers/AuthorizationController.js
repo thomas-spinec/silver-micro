@@ -53,10 +53,20 @@ module.exports = {
         });
       })
       .catch((err) => {
-        return res.status(500).json({
-          status: false,
-          error: err,
-        });
+        if (err.name === "SequelizeUniqueConstraintError") {
+          return res.status(401).json({
+            status: false,
+            error: {
+              type: "unique_constraint_error",
+              message: "L'email est déjà utilisé",
+            },
+          });
+        } else {
+          return res.status(500).json({
+            status: false,
+            error: err,
+          });
+        }
       });
   },
 

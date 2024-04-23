@@ -5,14 +5,16 @@ import Login from "../components/Login";
 
 function Authentication() {
   const [isRegister, setIsRegister] = useState(true);
+  const [title, setTitle] = useState("Register");
 
   const changeForm = () => {
     setIsRegister(!isRegister);
+    setTitle(isRegister ? "Login" : "Register");
   };
 
   return (
     <div>
-      <h1>Inscription/connexion</h1>
+      <h1>{title}</h1>
       {isRegister ? (
         <Register changeForm={changeForm} />
       ) : (

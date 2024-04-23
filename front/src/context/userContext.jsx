@@ -3,10 +3,14 @@ import { createContext, useState, useEffect, useContext, useMemo } from "react";
 export const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
-  const [user, setUser] = useState({
-    pseudo: null,
+  const [userContext, setUserContext] = useState({
+    email: null,
+    firstname: null,
+    lastname: null,
     id_user: null,
+    role: null,
   });
+  const [token, setToken] = useState(null);
   const [connected, setConnected] = useState(false);
 
   const PATH = import.meta.env.VITE_PATH;
@@ -32,7 +36,7 @@ const UserProvider = ({ children }) => {
   // };
 
   const handleLogout = () => {
-    setUser(null);
+    setUserContext(null);
     setConnected(false);
     localStorage.removeItem("pseudo");
     localStorage.removeItem("id");
@@ -47,21 +51,21 @@ const UserProvider = ({ children }) => {
   // }, [user]);
 
   useEffect(() => {
-    if (user && user.pseudo && user.id) {
-      localStorage.setItem("pseudo", user.pseudo);
-      localStorage.setItem("id", user.id);
+    if (userContext && userContext.pseudo && userContext.id) {
+      localStorage.setItem("pseudo", userContext.pseudo);
+      localStorage.setItem("id", userContext.id);
     } else if (localStorage.getItem("pseudo")) {
-      setUser({
+      setUserContext({
         pseudo: localStorage.getItem("pseudo"),
         id: localStorage.getItem("id"),
       });
       setConnected(true);
     }
-  }, [user]);
+  }, [userContext]);
 
   useEffect(() => {
-    console.log("user", user);
-  }, [user]);
+    console.log("user", userContext);
+  }, [userContext]);
 
   useEffect(() => {
     console.log("connected", connected);
@@ -83,8 +87,8 @@ const UserProvider = ({ children }) => {
     () => (
       <UserContext.Provider
         value={{
-          user,
-          setUser,
+          userContext,
+          setUserContext,
           connected,
           setConnected,
           handleLogout,
@@ -93,7 +97,7 @@ const UserProvider = ({ children }) => {
         {children}
       </UserContext.Provider>
     ),
-    [user, setUser, connected, setConnected, handleLogout]
+    [userContext, setUserContext, connected, setConnected, handleLogout]
   );
 };
 
