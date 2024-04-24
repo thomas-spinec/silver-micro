@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const { Sequelize } = require("sequelize");
 
@@ -17,6 +18,12 @@ const UserModel = require("./common/models/User");
 const RestaurantModel = require("./common/models/Restaurant");
 const BookingModel = require("./common/models/Booking");
 
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 // Database connection (mariaDB)
