@@ -1,28 +1,38 @@
-import React from "react";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
-// import { UserContext } from "../context/userContext";
+import { UserContext } from "../context/userContext";
 // import { userActions } from "../services/userServices";
 
 function Home() {
-  // const { user, setUser, connected, setConnected, handleLogout } =
-  //   useContext(UserContext);
-
-  // const logOut = async () => {
-  //   const res = await userActions.logout();
-  //   if (res) {
-  //     handleLogout();
-  //   }
-  // };
+  const { userContext, connected, handleLogout } = useContext(UserContext);
+  const navigate = useNavigate();
 
   return (
-    <div className="">
-      <h1>Home</h1>
-      <p>Welcome to our website</p>
-      {/* {connected ? (
-        <button onClick={logOut}>Logout</button>
-      ) : (
-        <p>Please login to access the website</p>
-      )} */}
+    <div className="flex justify-evenly !w-[100%]">
+      <div>
+        <h1>Home</h1>
+        <p>Welcome to our website</p>
+      </div>
+      <div>
+        {connected ? (
+          <div className="flex gap-4">
+            <div className="flex flex-col">
+              <h2>{userContext?.firstname}</h2>
+              <p>Your email is {userContext?.email}</p>
+            </div>
+            <button onClick={handleLogout}>Logout</button>
+          </div>
+        ) : (
+          <button
+            onClick={() =>
+              navigate("/authentication", { state: { action: "Se connecter" } })
+            }
+          >
+            Connexion
+          </button>
+        )}
+      </div>
     </div>
   );
 }

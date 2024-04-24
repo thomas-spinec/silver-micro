@@ -22,7 +22,10 @@ export const userActions = {
     try {
       const response = await fetch(`${PATH}/login`, {
         method: "POST",
-        body: user,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
       });
       const res = await response.json();
       return res;
