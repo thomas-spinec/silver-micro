@@ -19,7 +19,10 @@ function Register({ changeForm }) {
     password: "",
     password2: "",
     form: "disabled",
-    submit: null,
+    submit: {
+      status: null,
+      message: null,
+    },
   });
 
   const checkError = (name, value) => {
@@ -30,9 +33,9 @@ function Register({ changeForm }) {
           lastname:
             value.length < 1 ? "Le nom de famille est obligatoire" : null,
           form:
-            error.firstname !== null ||
-            error.email !== null ||
-            error.password !== null ||
+            error.firstname !== null &&
+            error.email !== null &&
+            error.password !== null &&
             error.password2 !== null
               ? "disabled"
               : null,
@@ -43,9 +46,9 @@ function Register({ changeForm }) {
           ...error,
           firstname: value.length < 1 ? "Le prénom est obligatoire" : null,
           form:
-            error.firstname !== null ||
-            error.email !== null ||
-            error.password !== null ||
+            error.firstname !== null &&
+            error.email !== null &&
+            error.password !== null &&
             error.password2 !== null
               ? "disabled"
               : null,
@@ -56,20 +59,22 @@ function Register({ changeForm }) {
           setError({
             ...error,
             email: "Email invalide",
+            form: "disabled",
           });
         } else if (value.length < 1) {
           setError({
             ...error,
             email: "L'email est obligatoire",
+            form: "disabled",
           });
         } else {
           setError({
             ...error,
             email: null,
             form:
-              error.firstname !== null ||
-              error.email !== null ||
-              error.password !== null ||
+              error.firstname !== null &&
+              error.email !== null &&
+              error.password !== null &&
               error.password2 !== null
                 ? "disabled"
                 : null,
@@ -82,9 +87,9 @@ function Register({ changeForm }) {
           password:
             value.length < 1 ? "Le mot de passe ne peut pas être vide" : null,
           form:
-            error.firstname !== null ||
-            error.email !== null ||
-            error.password !== null ||
+            error.firstname !== null &&
+            error.email !== null &&
+            error.password !== null &&
             error.password2 !== null
               ? "disabled"
               : null,
@@ -98,9 +103,9 @@ function Register({ changeForm }) {
               ? "Les mots de passes ne correspondent pas"
               : null,
           form:
-            error.firstname !== null ||
-            error.email !== null ||
-            error.password !== null ||
+            error.firstname !== null &&
+            error.email !== null &&
+            error.password !== null &&
             error.password2 !== null
               ? "disabled"
               : null,
@@ -119,11 +124,18 @@ function Register({ changeForm }) {
       error.password === null &&
       error.password2 === null
     ) {
-      setError({ ...error, form: null });
+      setError({
+        ...error,
+        form: null,
+        submit: {
+          status: null,
+          message: null,
+        },
+      });
     }
   }, [error.password2]);
 
-  const handleSubmit = async (data) => {
+  const handleRegister = async (data) => {
     if (error.form === null) {
       const res = await userActions.register(data);
       if (res.status === false) {
@@ -144,7 +156,16 @@ function Register({ changeForm }) {
           ...userContext,
           email: res.data.user.email,
         });
-        changeForm();
+        setError({
+          ...error,
+          submit: {
+            status: true,
+            message: "Inscription réussie, vous allez être redirigé",
+          },
+        });
+        setTimeout(() => {
+          changeForm();
+        }, 2000);
       }
     }
   };
@@ -231,12 +252,19 @@ function Register({ changeForm }) {
           disabled={error.form === "disabled"}
           onClick={(e) => {
             e.preventDefault();
-            console.log("register");
-            handleSubmit(user);
+            handleRegister(user);
           }}
           className="bg-blue-500 text-white rounded-[15px] p-2 cursor-pointer w-[50%] self-center hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
         />
-        <p>{error?.submit}</p>
+        {error.submit?.status !== null && (
+          <p
+            className={`${
+              error.submit.status ? "text-green-500" : "text-red-500"
+            }`}
+          >
+            {error.submit.message}
+          </p>
+        )}
       </form>
       <button onClick={changeForm}>Connexion</button>
     </div>

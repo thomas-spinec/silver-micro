@@ -12,7 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="authentication" element={<Authentication />} />
+          <Route path="/authentication" element={<Authentication />} />
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>

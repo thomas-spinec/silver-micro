@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useContext, useMemo } from "react";
+import { createContext, useState, useEffect, useMemo } from "react";
 
 export const UserContext = createContext();
 
@@ -13,52 +13,50 @@ const UserProvider = ({ children }) => {
   const [token, setToken] = useState(null);
   const [connected, setConnected] = useState(false);
 
-  const PATH = import.meta.env.VITE_PATH;
-
-  // const fetchUser = async () => {
-  //   // on récupère les données de l'utilisateur
-  //   try {
-  //     let data = new FormData();
-  //     data.append("user", user.login);
-  //     data.append("context", "fetchUser");
-
-  //     const response = await fetch(`${PATH}controller/authController.php`, {
-  //       method: "POST",
-  //       body: data,
-  //     });
-  //     const res = await response.json();
-  //     if (res) {
-  //       setData(res);
-  //     }
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+  // const PATH = import.meta.env.VITE_PATH;
 
   const handleLogout = () => {
-    setUserContext(null);
+    localStorage.removeItem("email");
+    localStorage.removeItem("id_user");
+    localStorage.removeItem("role");
+    localStorage.removeItem("firstname");
+    localStorage.removeItem("lastname");
+    localStorage.removeItem("token");
+    setUserContext({
+      email: null,
+      firstname: null,
+      lastname: null,
+      id_user: null,
+      role: null,
+    });
+    setToken(null);
     setConnected(false);
-    localStorage.removeItem("pseudo");
-    localStorage.removeItem("id");
   };
 
-  // useEffect(() => {
-  //   if (user) {
-  //     fetchUser();
-  //   } else {
-  //     setData({});
-  //   }
-  // }, [user]);
-
   useEffect(() => {
-    if (userContext && userContext.pseudo && userContext.id) {
-      localStorage.setItem("pseudo", userContext.pseudo);
-      localStorage.setItem("id", userContext.id);
-    } else if (localStorage.getItem("pseudo")) {
+    if (
+      userContext?.email &&
+      userContext?.id_user &&
+      userContext?.role &&
+      userContext?.firstname &&
+      userContext?.lastname &&
+      token
+    ) {
+      localStorage.setItem("email", userContext.email);
+      localStorage.setItem("id_user", userContext.id_user);
+      localStorage.setItem("role", userContext.role);
+      localStorage.setItem("firstname", userContext.firstname);
+      localStorage.setItem("lastname", userContext.lastname);
+      localStorage.setItem("token", token);
+    } else if (localStorage.getItem("email")) {
       setUserContext({
-        pseudo: localStorage.getItem("pseudo"),
-        id: localStorage.getItem("id"),
+        email: localStorage.getItem("email"),
+        id_user: localStorage.getItem("id_user"),
+        role: localStorage.getItem("role"),
+        firstname: localStorage.getItem("firstname"),
+        lastname: localStorage.getItem("lastname"),
       });
+      setToken(localStorage.getItem("token"));
       setConnected(true);
     }
   }, [userContext]);
