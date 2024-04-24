@@ -89,6 +89,8 @@ const UserProvider = ({ children }) => {
         value={{
           userContext,
           setUserContext,
+          token,
+          setToken,
           connected,
           setConnected,
           handleLogout,
@@ -97,7 +99,15 @@ const UserProvider = ({ children }) => {
         {children}
       </UserContext.Provider>
     ),
-    [userContext, setUserContext, connected, setConnected, handleLogout]
+    [
+      userContext,
+      setUserContext,
+      token,
+      setToken,
+      connected,
+      setConnected,
+      handleLogout,
+    ]
   );
 };
 

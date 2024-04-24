@@ -198,7 +198,7 @@ function Register({ changeForm }) {
           </div>
           <div>
             <div className="flex flex-col">
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password">Mot de passe</label>
               <input
                 type="password"
                 id="password"
@@ -211,7 +211,7 @@ function Register({ changeForm }) {
               <p>{error?.password}</p>
             </div>
             <div className="flex flex-col">
-              <label htmlFor="password2">Confirm password</label>
+              <label htmlFor="password2">Confirmation</label>
               <input
                 type="password"
                 id="password2"
