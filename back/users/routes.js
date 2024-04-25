@@ -45,6 +45,9 @@ router.get("/", [isAuthenticatedMiddleware.check], UserController.getUser);
 //   UserController.updateUser
 // );
 
+// find by email
+router.post("/find", UserController.findUserByEmail);
+
 router.get(
   "/all",
   [isAuthenticatedMiddleware.check, CheckPermissionMiddleware.has(roles.ADMIN)],

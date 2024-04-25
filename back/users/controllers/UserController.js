@@ -138,4 +138,23 @@ module.exports = {
         });
       });
   },
+
+  //find user by email
+  findUserByEmail: (req, res) => {
+    const { email } = req.body;
+
+    UserModel.findUser({ email })
+      .then((user) => {
+        return res.status(200).json({
+          status: true,
+          data: user.toJSON(),
+        });
+      })
+      .catch((err) => {
+        return res.status(500).json({
+          status: false,
+          error: err,
+        });
+      });
+  },
 };

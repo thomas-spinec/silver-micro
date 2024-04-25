@@ -26,7 +26,7 @@ function Home() {
         ) : (
           <button
             onClick={() =>
-              navigate("/authentication", { state: { action: "Se connecter" } })
+              navigate("/authentication", { state: { action: "Chercher" } })
             }
           >
             Connexion

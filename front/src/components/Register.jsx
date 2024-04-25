@@ -270,7 +270,6 @@ function Register({ changeForm }) {
           </p>
         )}
       </form>
-      <button onClick={changeForm}>Connexion</button>
     </div>
   );
 }

@@ -131,11 +131,9 @@ function Login({ changeForm }) {
             <input
               type="email"
               name="email"
-              defaultValue={user?.email}
-              onChange={(e) => {
-                setUser({ ...user, email: e.target.value });
-                checkError("email", e.target.value);
-              }}
+              value={user?.email}
+              readOnly={true}
+              className="cursor-not-allowed "
             />
             <p>{error?.email}</p>
           </div>
@@ -172,7 +170,6 @@ function Login({ changeForm }) {
           )}
         </form>
       </div>
-      <button onClick={changeForm}>Inscription</button>
     </div>
   );
 }
