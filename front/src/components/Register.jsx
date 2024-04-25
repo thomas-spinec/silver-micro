@@ -138,12 +138,16 @@ function Register({ changeForm }) {
   const handleRegister = async (data) => {
     if (error.form === null) {
       const res = await userActions.register(data);
+
       if (res.status === false) {
         if (res.error.type === "unique_constraint_error") {
           setError({
             ...error,
             email: "L'email est déjà utilisé",
-            submit: "Une erreur est survenue lors de l'inscription",
+            submit: {
+              status: false,
+              message:"Une erreur est survenue lors de l'inscription",
+            },
           });
         } else {
           setError({
