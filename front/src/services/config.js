@@ -1,22 +1,24 @@
 import {useContext} from "react";
 import axios from 'axios';
 
-import {UserContext} from "../context/userContext";
+
 
 
 const PATH = import.meta.env.VITE_PATH;
 
 const instance = axios.create({
-    baseUrl: `${PATH}`,
+    baseURL: `${PATH}`,
     timeout: 10000,
     headers: {
         'Content-Type': 'application/json',
     },
-});
+}
+
+);
 
 instance.interceptors.request.use(
     async (config) => {
-        const {token} = useContext(UserContext);
+        const token = localStorage.getItem("token");
         config.headers.Authorization = `Bearer ${token}`;
         return config;
     },

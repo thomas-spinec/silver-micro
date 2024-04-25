@@ -1,36 +1,27 @@
-const PATH = import.meta.env.VITE_PATH;
+import axios from "axios";
+import instance from "./config";
 
 export const userActions = {
   //REGISTER
   async register(user) {
     try {
-      const response = await fetch(`${PATH}/signup`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-      });
-      const res = await response.json();
-      return res;
+      const response = await instance.post("/signup",JSON.stringify(user) 
+      );
+      return response.data;
     } catch (err) {
       console.log(err);
+      return err.response.data;
     }
   },
   //LOGIN
   async login(user) {
     try {
-      const response = await fetch(`${PATH}/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-      });
-      const res = await response.json();
-      return res;
+      const response = await instance.post("/login",JSON.stringify(user) 
+    );
+      return response.data;
     } catch (err) {
       console.log(err);
+      return err.response.data;
     }
   },
   //LOGOUT
