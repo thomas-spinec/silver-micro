@@ -36,4 +36,16 @@ export const userActions = {
       console.log(err);
     }
   },
+
+  //find user by email
+  async findUserByEmail(email) {
+    try {
+      const response = await instance.post("/user/find",JSON.stringify({ email })
+      );
+      return response.data;
+    } catch (err) {
+      console.log(err);
+      return err.response.data;
+    }
+  },
 };
