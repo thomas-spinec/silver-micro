@@ -32,4 +32,29 @@ module.exports = {
       });
     };
   },
+  // methode pour vérifier si l'utilisateur supprimé est un super admin
+  // si oui, on ne peut pas le supprimer
+  // sinon, on continue
+  isSuperAdmin: (role) => {
+    return (req, res, next) => {
+      const {
+        params: { userId },
+      } = req;
+
+      UserModel.findUser({ id: userId }).then((user) => {
+        const userRole = user.role;
+
+        // IF user is super admin
+        // THEN return forbidden error
+        if (userRole === role) {
+          return res.status(403).json({
+            status: false,
+            error: `You are not authorized to perform this action.`,
+          });
+        }
+
+        next();
+      });
+    };
+  },
 };

@@ -6,5 +6,6 @@ module.exports = {
   roles: {
     USER: "user",
     ADMIN: "admin",
+    SUPER: "super",
   },
 };
