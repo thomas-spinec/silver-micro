@@ -24,7 +24,6 @@ const router = require("express").Router();
 const isAuthenticatedMiddleware = require("./../common/middlewares/IsAuthenticatedMiddleware");
 // const SchemaValidationMiddleware = require("../common/middlewares/SchemaValidationMiddleware");
 const CheckPermissionMiddleware = require("../common/middlewares/CheckPermissionMiddleware");
-const IsSuperAdminMiddleware = require("../common/middlewares/IsSuperAdminMiddleware");
 
 // Controller Imports
 const UserController = require("./controllers/UserController");
@@ -64,6 +63,12 @@ router.get(
 //   ],
 //   UserController.changeRole
 // );
+
+router.put(
+  "/update",
+  [isAuthenticatedMiddleware.check],
+  UserController.updateUser
+);
 
 router.delete(
   "/:userId",
