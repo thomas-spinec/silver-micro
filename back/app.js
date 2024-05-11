@@ -12,11 +12,13 @@ const AuthorizationRoutes = require("./authorization/routes");
 const UsersRoutes = require("./users/routes");
 const RestaurantsRoutes = require("./restaurants/routes");
 const BookingsRoutes = require("./bookings/routes");
+const ManagersRoutes = require("./managers/routes");
 
 // Sequelize model imports
 const UserModel = require("./common/models/User");
 const RestaurantModel = require("./common/models/Restaurant");
 const BookingModel = require("./common/models/Booking");
+const ManagerModel = require("./common/models/Manager");
 
 app.use(
   cors({
@@ -49,6 +51,7 @@ try {
 UserModel.initialize(sequelize);
 RestaurantModel.initialize(sequelize);
 BookingModel.initialize(sequelize);
+ManagerModel.initialize(sequelize);
 
 // ========================> ROUTES
 // syncing models that are defined on sequelize with the tables that already exist in the database
@@ -64,6 +67,7 @@ sequelize
     app.use("/user", UsersRoutes);
     app.use("/restaurant", RestaurantsRoutes);
     app.use("/booking", BookingsRoutes);
+    app.use("/manager", ManagersRoutes);
 
     app.listen(PORT, () => {
       console.log(`Example app listening on port ${PORT}`);

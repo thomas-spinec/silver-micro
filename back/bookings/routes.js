@@ -17,30 +17,23 @@ router.get(
   BookingController.getBooking
 );
 
-// router.patch(
-//     "/",
-//     [
-//         isAuthenticatedMiddleware.check,
-//         SchemaValidationMiddleware.verify(updateBookingPayload),
-//     ],
-//     BookingController.updateBooking
-// );
-
 router.get(
   "/all",
   [isAuthenticatedMiddleware.check],
   BookingController.getAllBookings
 );
 
-// router.patch(
-//     "/change-role/:bookingId",
-//     [
-//         isAuthenticatedMiddleware.check,
-//         CheckPermissionMiddleware.has(roles.ADMIN),
-//         SchemaValidationMiddleware.verify(changeRolePayload),
-//     ],
-//     BookingController.changeRole
-// );
+router.post(
+  "/",
+  [isAuthenticatedMiddleware.check],
+  BookingController.createBooking
+);
+
+router.put(
+  "/:bookingId",
+  [isAuthenticatedMiddleware.check],
+  BookingController.updateBooking
+);
 
 router.delete(
   "/:bookingId",

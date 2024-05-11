@@ -1,4 +1,6 @@
 const RestaurantModel = require("../../common/models/Restaurant");
+const ManagerModel = require("../../common/models/Manager");
+const { roles } = require("../../config");
 
 module.exports = {
   // ========================> CREATE RESTAURANT
@@ -7,10 +9,28 @@ module.exports = {
 
     RestaurantModel.createRestaurant(payload)
       .then((restaurant) => {
-        return res.status(201).json({
-          status: true,
-          data: restaurant.toJSON(),
-        });
+        if (restaurant) {
+          // create a manager
+          const manager = {
+            userId: req.user.userId,
+            restaurantId: restaurant.id,
+            role: roles.PATRON,
+          };
+          ManagerModel.createManager(manager)
+            .then((patron) => {
+              return res.status(201).json({
+                status: true,
+                data: restaurant.toJSON(),
+              });
+            })
+            .catch((err) => {
+              return res.status(500).json({
+                status: false,
+                error: err,
+              });
+            });
+          // create a manager
+        }
       })
       .catch((err) => {
         return res.status(500).json({

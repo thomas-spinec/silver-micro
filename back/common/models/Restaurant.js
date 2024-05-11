@@ -28,6 +28,10 @@ const RestaurantModel = {
   },
   rating: {
     type: DataTypes.FLOAT,
+    allowNull: true,
+  },
+  phone: {
+    type: DataTypes.STRING,
     allowNull: false,
   },
 };
