@@ -21,7 +21,7 @@ module.exports = {
 
         // IF user does not possess the required role
         // THEN return forbidden error
-        if (userRole !== role) {
+        if (userRole !== role || userRole !== "super") {
           return res.status(403).json({
             status: false,
             error: `You need to be ${role} to access this endpoint.`,
