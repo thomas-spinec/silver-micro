@@ -1,6 +1,9 @@
 import {useState, useContext} from 'react';
 import { userActions } from "../services/userServices";
 import { UserContext } from "../context/userContext";
+import { Mail } from 'lucide-react';
+import { Utensils } from 'lucide-react';
+
 
 function Search({ changeForm }) {
 
@@ -65,38 +68,45 @@ function Search({ changeForm }) {
 
 
   return (
-    <div>
-      <form>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        onChange={(e) => {
-            setEmail(e.target.value);
-            checkError("email", e.target.value);
-        }}
-       />
-        <p>{error?.email}</p>
-        <input
-          type="submit"
-          value="Recherche"
-          disabled={error.form === "disabled"}
-          onClick={(e) => {
-            e.preventDefault();
-            // handleRegister(user);
-            handleSubmit(email);
-          }}
-          className="bg-blue-500 text-white rounded-[15px] p-2 cursor-pointer w-[50%] self-center hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
-        />
-         {error.submit?.status !== null && (
-          <p
-            className={`${
-              error.submit.status ? "text-green-500" : "text-red-500"
-            }`}
-          >
-            {error.submit.message}
-          </p>
-        )}
+    <div className='flex flex-col items-center justify-center'>
+         <Utensils size={60} />
+      <form className='flex flex-col gap-4'>
+        <div className="flex justify-center  rounded-[3px] items-center border-[2px] w-[80%] m-auto">
+            <Mail size={30} fill='#000' className="text-[#fff]"/>
+            <input
+               className="border-0 focus:outline-none w-[80%] p-2"
+                type="email"
+                id="email"
+                name="email"
+                placeholder='Votre adresse email'
+
+                onChange={(e) => {
+                    setEmail(e.target.value);
+                    checkError("email", e.target.value);
+                }}
+            />
+         </div>
+                <p>{error?.email}</p>
+                <input
+                type="submit"
+                value="Recherche"
+                disabled={error.form === "disabled"}
+                onClick={(e) => {
+                    e.preventDefault();
+                    // handleRegister(user);
+                    handleSubmit(email);
+                }}
+                className="bg-[#414BB2] text-white rounded-[3px] p-2 cursor-pointer w-[80%] self-center hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                />
+                {error.submit?.status !== null && (
+                <p
+                    className={`${
+                    error.submit.status ? "text-green-500" : "text-red-500"
+                    }`}
+                >
+                    {error.submit.message}
+                </p>
+                )}
         </form>
     </div>
   )
