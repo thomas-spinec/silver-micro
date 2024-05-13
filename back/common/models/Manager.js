@@ -1,8 +1,9 @@
 const { DataTypes } = require("sequelize");
+const { roles } = require("../../config");
 const RestaurantModel = require("./Restaurant");
 const UserModel = require("./User");
 
-const BookingModel = {
+const ManagerModel = {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -16,17 +17,10 @@ const BookingModel = {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  bookingDate: {
-    type: DataTypes.DATE,
+  role: {
+    type: DataTypes.ENUM(roles.RESPONSABLE, roles.PATRON),
     allowNull: false,
-  },
-  numberOfGuests: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  comment: {
-    type: DataTypes.STRING,
-    allowNull: true,
+    defaultValue: roles.RESPONSABLE,
   },
 };
 
@@ -37,10 +31,11 @@ module.exports = {
       "restaurant",
       RestaurantModel.getModel()
     );
-    this.model = sequelize.define("booking", BookingModel);
+    this.model = sequelize.define("manager", ManagerModel);
     this.model.belongsTo(User, {
       foreignKey: "userId",
     });
+
     this.model.belongsTo(Restaurant, {
       foreignKey: "restaurantId",
     });
@@ -56,24 +51,40 @@ module.exports = {
     });
   },
 
-  createBooking: (booking) => {
-    return this.model.create(booking);
+  getModel: () => {
+    return ManagerModel;
   },
 
-  findBooking: (query) => {
+  createManager: (manager) => {
+    return this.model.create(manager);
+  },
+
+  findManager: (query) => {
     return this.model.findOne({
       where: query,
     });
   },
 
-  updateBooking: (query, updatedValue) => {
+  findManagerById: (id) => {
+    return this.model.findByPk(id);
+  },
+
+  updateManager: (query, updatedValue) => {
     return this.model.update(updatedValue, {
       where: query,
     });
   },
 
-  findAllBookings: (query) => {
+  findAllManagers: (query) => {
+    console.log(query);
     return this.model.findAll({
+      where: query,
+      include: ["user"],
+    });
+  },
+
+  deleteManager: (query) => {
+    return this.model.destroy({
       where: query,
     });
   },

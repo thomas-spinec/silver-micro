@@ -8,9 +8,9 @@ import { UserContext } from "../context/userContext";
 const Layout = () => {
   const { connected } = useContext(UserContext);
   return (
-    <>
-      <nav>
-        <ul>
+    <div className="flex flex-col gap-2 h-[100%] w-[100%]">
+      <nav className="h-[10%]">
+        <ul className="flex justify-evenly gap-2">
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -29,7 +29,7 @@ const Layout = () => {
       </nav>
 
       <Outlet />
-    </>
+    </div>
   );
 };
 

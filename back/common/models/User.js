@@ -25,7 +25,7 @@ const UserModel = {
     allowNull: false,
   },
   role: {
-    type: DataTypes.ENUM(roles.USER, roles.ADMIN),
+    type: DataTypes.ENUM(roles.USER, roles.ADMIN, roles.SUPER),
     allowNull: false,
     defaultValue: roles.USER,
   },

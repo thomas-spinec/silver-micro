@@ -64,9 +64,19 @@ router.get(
 //   UserController.changeRole
 // );
 
+router.put(
+  "/update",
+  [isAuthenticatedMiddleware.check],
+  UserController.updateUser
+);
+
 router.delete(
   "/:userId",
-  [isAuthenticatedMiddleware.check, CheckPermissionMiddleware.has(roles.ADMIN)],
+  [
+    isAuthenticatedMiddleware.check,
+    CheckPermissionMiddleware.has(roles.ADMIN),
+    CheckPermissionMiddleware.isSuperAdmin(roles.SUPER),
+  ],
   UserController.deleteUser
 );
 

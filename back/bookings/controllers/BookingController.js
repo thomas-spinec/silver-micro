@@ -4,7 +4,7 @@ module.exports = {
   // ========================> CREATE BOOKING
   createBooking: (req, res) => {
     const { body: payload } = req;
-
+    payload.userId = req.user.userId;
     BookingModel.createBooking(payload)
       .then((booking) => {
         return res.status(201).json({
@@ -57,7 +57,7 @@ module.exports = {
   },
 
   // ========================> UPDATE BOOKING
-  updateBooking: (req, res) => {
+  updateBooking: async (req, res) => {
     const {
       params: { bookingId },
       body: payload,
@@ -74,11 +74,23 @@ module.exports = {
       });
     }
 
+    const { userId } = req.user;
+    const booking = await BookingModel.findBooking({ userId: userId });
+
+    if (booking === null) {
+      return res.status(404).json({
+        status: false,
+        error: {
+          message: "Booking not found.",
+        },
+      });
+    }
+
     BookingModel.updateBooking({ id: bookingId }, payload)
       .then((booking) => {
         return res.status(200).json({
           status: true,
-          data: booking.toJSON(),
+          message: "Booking updated successfully.",
         });
       })
       .catch((err) => {

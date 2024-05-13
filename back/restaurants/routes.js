@@ -17,35 +17,16 @@ router.get(
   RestaurantController.getRestaurant
 );
 
-// router.patch(
-//   "/",
-//   [
-//     isAuthenticatedMiddleware.check,
-//     SchemaValidationMiddleware.verify(updateRestaurantPayload),
-//   ],
-//   RestaurantController.updateRestaurant
-// );
-
 router.get(
   "/all",
   [isAuthenticatedMiddleware.check],
   RestaurantController.getAllRestaurants
 );
 
-// router.patch(
-//   "/change-role/:restaurantId",
-//   [
-//     isAuthenticatedMiddleware.check,
-//     CheckPermissionMiddleware.has(roles.ADMIN),
-//     SchemaValidationMiddleware.verify(changeRolePayload),
-//   ],
-//   RestaurantController.changeRole
-// );
-
-// router.delete(
-//   "/:restaurantId",
-//   [isAuthenticatedMiddleware.check],
-//   RestaurantController.deleteRestaurant
-// );
+router.post(
+  "/",
+  [isAuthenticatedMiddleware.check],
+  RestaurantController.createRestaurant
+);
 
 module.exports = router;
