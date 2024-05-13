@@ -2,6 +2,7 @@ import {useState, useContext} from 'react';
 import { userActions } from "../services/userServices";
 import { UserContext } from "../context/userContext";
 import { Mail } from 'lucide-react';
+import { Utensils } from 'lucide-react';
 
 
 function Search({ changeForm }) {
@@ -67,10 +68,11 @@ function Search({ changeForm }) {
 
 
   return (
-    <div>
-      <form>
-        <div className="flex justify-center items-center border-[2px]  w-[80%]">
-            <Mail size={32} className="text-indigo-500" />
+    <div className='flex flex-col items-center justify-center'>
+         <Utensils size={60} />
+      <form className='flex flex-col gap-4'>
+        <div className="flex justify-center  rounded-[3px] items-center border-[2px] w-[80%] m-auto">
+            <Mail size={30} fill='#000' className="text-[#fff]"/>
             <input
                className="border-0 focus:outline-none w-[80%] p-2"
                 type="email"
@@ -94,7 +96,7 @@ function Search({ changeForm }) {
                     // handleRegister(user);
                     handleSubmit(email);
                 }}
-                className="bg-blue-500 text-white rounded-[15px] p-2 cursor-pointer w-[50%] self-center hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="bg-[#414BB2] text-white rounded-[3px] p-2 cursor-pointer w-[80%] self-center hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
                 />
                 {error.submit?.status !== null && (
                 <p
