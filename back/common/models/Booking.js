@@ -20,13 +20,13 @@ const BookingModel = {
     type: DataTypes.DATE,
     allowNull: false,
   },
-  bookingTime: {
-    type: DataTypes.TIME,
-    allowNull: false,
-  },
   numberOfGuests: {
     type: DataTypes.INTEGER,
     allowNull: false,
+  },
+  comment: {
+    type: DataTypes.STRING,
+    allowNull: true,
   },
 };
 
