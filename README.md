@@ -1,6 +1,12 @@
-# silver-micro
+# **silver-micro**
 
-# Instructions d'Installation
+# 🔠 Description: 
+The Spoune est une plateforme en ligne de réservation de restaurants conçue pour connecter les restaurateurs aux clients. Cette application web permet aux utilisateurs de trouver et de réserver des tables dans leurs restaurants préférés, tout en offrant aux chefs et aux propriétaires de restaurants un moyen efficace de gérer leurs réservations et de contrôler leur présence en ligne.
+Les utilisateurs peuvent accéder à une variété de restaurants, explorer les menus, réserver des tables et modifier ou annuler leurs réservations existantes. Les chefs et les propriétaires de restaurants peuvent ajouter et gérer leur établissement, mettre à jour les menus et les informations de l'établissement, et surveiller les réservations via une interface de gestion de restaurateur intuitive.
+
+
+
+# 🏗️ Instructions d'Installation
 
 Ce projet utilise Express.js pour le framework back et Sequelize comme ORM pour interagir avec la base de données relationnelle. Suivez les étapes ci-dessous pour installer les dépendances nécessaires et configurer l'application.
 
