@@ -3,13 +3,13 @@ import { userActions } from "../services/userServices";
 import { UserContext } from "../context/userContext";
 import { useNavigate } from "react-router-dom";
 
-function Login({ changeForm }) {
+function Login({ changeForm, mail, setMail, firstname, setFirstname }) {
   const { userContext, setUserContext, setToken, setConnected } =
     useContext(UserContext);
   const navigate = useNavigate();
 
   const [user, setUser] = useState({
-    email: userContext?.email ?? "",
+    email: mail,
     password: "",
   });
 
@@ -93,6 +93,8 @@ function Login({ changeForm }) {
           },
         });
         setTimeout(() => {
+          setMail("");
+          setFirstname("");
           setConnected(true);
           navigate("/");
         }, 2000);
@@ -125,18 +127,11 @@ function Login({ changeForm }) {
   return (
     <div className="flex flex-col gap-4">
       <div>
+        <div className="flex flex-col">
+          <p>Bienvenue {firstname},</p>
+          <p>veuillez entrez votre mot de passe</p>
+        </div>
         <form className="flex flex-col border rounded-[15px] p-2 gap-4">
-          <div className="flex flex-col">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              name="email"
-              value={user?.email}
-              readOnly={true}
-              className="cursor-not-allowed "
-            />
-            <p>{error?.email}</p>
-          </div>
           <div className="flex flex-col">
             <label htmlFor="password">Mot de passe</label>
             <input

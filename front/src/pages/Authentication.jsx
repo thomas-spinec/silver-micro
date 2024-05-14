@@ -11,10 +11,11 @@ function Authentication() {
   const location = useLocation();
   const [action, setAction] = useState(location.state?.action ?? "Chercher");
   const { connected } = useContext(UserContext);
+  const [mail, setMail] = useState("");
+  const [firstname, setFirstname] = useState("");
 
   const changeForm = (value) => {
     setAction(value);
-    setTitle(value);
   };
 
   useEffect(() => {
@@ -23,16 +24,33 @@ function Authentication() {
     }
   }, [connected, navigate]);
 
-
-
   return (
     <div className="w-[500px]">
-      {
-        action === "Chercher" ? <Search changeForm={changeForm}/> : action === "S'inscrire" ? <Register changeForm={changeForm} /> : <Login changeForm={changeForm} />
-      }
+      {action === "Chercher" ? (
+        <Search
+          changeForm={changeForm}
+          setMail={setMail}
+          setFirstname={setFirstname}
+        />
+      ) : action === "S'inscrire" ? (
+        <Register
+          changeForm={changeForm}
+          mail={mail}
+          setMail={setMail}
+          firstname={firstname}
+          setFirstname={setFirstname}
+        />
+      ) : (
+        <Login
+          changeForm={changeForm}
+          mail={mail}
+          setMail={setMail}
+          firstname={firstname}
+          setFirstname={setFirstname}
+        />
+      )}
     </div>
   );
-
 }
 
 export default Authentication;
