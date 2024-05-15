@@ -1,9 +1,9 @@
-import { useState, useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/userContext";
-import { useNavigate, useLocation } from "react-router-dom";
 
-import Register from "../components/Register";
 import Login from "../components/Login";
+import Register from "../components/Register";
 import Search from "../components/Search";
 
 function Authentication() {
@@ -36,8 +36,6 @@ function Authentication() {
         <Register
           changeForm={changeForm}
           mail={mail}
-          setMail={setMail}
-          firstname={firstname}
           setFirstname={setFirstname}
         />
       ) : (
