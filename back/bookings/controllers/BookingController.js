@@ -39,6 +39,68 @@ module.exports = {
       });
   },
 
+  // ========================> GET BOOKING BY USER
+  getBookingByUser: (req, res) => {
+    console.log("AAAA");
+    return res.status(200).json({
+      status: true,
+      data: "Hello World",
+    });
+    const { userId } = req.user;
+    console.log("REQ", req);
+    console.log("USER", userId);
+
+    BookingModel.findAllBookings({ userId: userId })
+      .then((booking) => {
+        if (!booking) {
+          return res.status(404).json({
+            status: false,
+            error: {
+              message: "No bookings found for the user.",
+            },
+          });
+        }
+        return res.status(200).json({
+          status: true,
+          data: booking,
+        });
+      })
+      .catch((err) => {
+        console.log("err", err);
+        return res.status(500).json({
+          status: false,
+          error: err,
+        });
+      });
+  },
+
+  // ========================> GET BOOKING BY RESTAURANT
+  getBookingByRestaurant: (req, res) => {
+    const { restaurantId } = req.params;
+
+    BookingModel.findAllBookings({ restaurantId: restaurantId })
+      .then((booking) => {
+        if (!booking) {
+          return res.status(404).json({
+            status: false,
+            error: {
+              message: "No bookings found for the restaurant.",
+            },
+          });
+        }
+        return res.status(200).json({
+          status: true,
+          data: booking,
+        });
+      })
+      .catch((err) => {
+        return res.status(500).json({
+          status: false,
+          error: err,
+        });
+      });
+  },
+
   // ========================> GET ALL BOOKINGS
   getAllBookings: (req, res) => {
     BookingModel.findAllBookings()
@@ -75,7 +137,7 @@ module.exports = {
     }
 
     const { userId } = req.user;
-    const booking = await BookingModel.findBooking({ userId: userId });
+    const booking = await BookingModel.findBooking({ id: bookingId });
 
     if (booking === null) {
       return res.status(404).json({

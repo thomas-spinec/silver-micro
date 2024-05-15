@@ -17,7 +17,7 @@ router.get(
   [
     isAuthenticatedMiddleware.check,
     CheckPermissionMiddleware.has(roles.ADMIN),
-    CheckPermissionMiddleware.isStaffFromThisRestaurant(roles.PATRON),
+    CheckPermissionMiddleware.isStaffFromThisRestaurantIs(roles.PATRON),
   ],
   ManagerController.getAllManagers
 );
@@ -27,7 +27,7 @@ router.post(
   [
     isAuthenticatedMiddleware.check,
     CheckPermissionMiddleware.has(roles.ADMIN),
-    CheckPermissionMiddleware.isStaffFromThisRestaurant(roles.PATRON),
+    CheckPermissionMiddleware.isStaffFromThisRestaurantIs(roles.PATRON),
   ],
   ManagerController.createManager
 );
@@ -37,7 +37,7 @@ router.put(
   [
     isAuthenticatedMiddleware.check,
     CheckPermissionMiddleware.has(roles.ADMIN),
-    CheckPermissionMiddleware.isStaffFromThisRestaurant(roles.PATRON),
+    CheckPermissionMiddleware.isStaffFromThisRestaurantIs(roles.PATRON),
   ],
   ManagerController.updateManager
 );
@@ -48,7 +48,7 @@ router.delete(
     isAuthenticatedMiddleware.check,
     // CheckPermissionMiddleware.isUserConnectedSuperAdmin(roles.SUPER),
     CheckPermissionMiddleware.isThisStaffPatron(roles.PATRON),
-    CheckPermissionMiddleware.isStaffFromThisRestaurant(roles.PATRON),
+    CheckPermissionMiddleware.isStaffFromThisRestaurantIs(roles.PATRON),
     CheckPermissionMiddleware.has(roles.ADMIN),
   ],
   ManagerController.deleteManager

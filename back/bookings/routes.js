@@ -12,9 +12,24 @@ const BookingController = require("./controllers/BookingController");
 // const updateBookingPayload = require("./schemas/updateBookingPayload");
 
 router.get(
-  "/",
+  "/:bookingId",
   [isAuthenticatedMiddleware.check],
   BookingController.getBooking
+);
+
+router.get(
+  "/byUser",
+  [isAuthenticatedMiddleware.check],
+  BookingController.getBookingByUser
+);
+
+router.get(
+  "/byRestaurant/:restaurantId",
+  [
+    isAuthenticatedMiddleware.check,
+    CheckPermissionMiddleware.isFromThisRestaurant,
+  ],
+  BookingController.getBookingByRestaurant
 );
 
 router.get(

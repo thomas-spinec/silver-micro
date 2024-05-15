@@ -1,5 +1,6 @@
 const RestaurantModel = require("../../common/models/Restaurant");
 const ManagerModel = require("../../common/models/Manager");
+const UserModel = require("../../common/models/User");
 const { roles } = require("../../config");
 
 module.exports = {
@@ -18,10 +19,23 @@ module.exports = {
           };
           ManagerModel.createManager(manager)
             .then((patron) => {
-              return res.status(201).json({
-                status: true,
-                data: restaurant.toJSON(),
-              });
+              // update the user role to admin
+              UserModel.updateUser(
+                { id: req.user.userId },
+                { role: roles.ADMIN }
+              )
+                .then((user) => {
+                  return res.status(201).json({
+                    status: true,
+                    data: restaurant.toJSON(),
+                  });
+                })
+                .catch((err) => {
+                  return res.status(500).json({
+                    status: false,
+                    error: err,
+                  });
+                });
             })
             .catch((err) => {
               return res.status(500).json({
