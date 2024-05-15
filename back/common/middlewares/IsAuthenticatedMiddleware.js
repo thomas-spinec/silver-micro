@@ -49,7 +49,6 @@ module.exports = {
         });
       }
 
-      console.log("USER MIDDLE", user);
       req.user = user; // Save the user object for further use
       next();
     });

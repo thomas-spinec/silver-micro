@@ -73,7 +73,6 @@ module.exports = {
   },
 
   findAllBookings: (query) => {
-    console.log("QUERY MODEL", query);
     return this.model.findAll({
       where: query,
     });

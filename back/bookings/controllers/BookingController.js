@@ -23,9 +23,18 @@ module.exports = {
   // ========================> GET BOOKING
   getBooking: (req, res) => {
     const { bookingId } = req.params;
+    const { userId } = req.user;
 
     BookingModel.findBooking({ id: bookingId })
       .then((booking) => {
+        if (!booking || booking.userId !== userId) {
+          return res.status(404).json({
+            status: false,
+            error: {
+              message: "Booking not found.",
+            },
+          });
+        }
         return res.status(200).json({
           status: true,
           data: booking.toJSON(),
@@ -41,14 +50,7 @@ module.exports = {
 
   // ========================> GET BOOKING BY USER
   getBookingByUser: (req, res) => {
-    console.log("AAAA");
-    return res.status(200).json({
-      status: true,
-      data: "Hello World",
-    });
     const { userId } = req.user;
-    console.log("REQ", req);
-    console.log("USER", userId);
 
     BookingModel.findAllBookings({ userId: userId })
       .then((booking) => {
