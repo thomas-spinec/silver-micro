@@ -40,19 +40,19 @@ module.exports = {
     this.model = sequelize.define("booking", BookingModel);
     this.model.belongsTo(User, {
       foreignKey: "userId",
+      onDelete: "cascade",
     });
     this.model.belongsTo(Restaurant, {
       foreignKey: "restaurantId",
+      onDelete: "cascade",
     });
 
     User.hasMany(this.model, {
       foreignKey: "userId",
-      onDelete: "CASCADE",
     });
 
     Restaurant.hasMany(this.model, {
       foreignKey: "restaurantId",
-      onDelete: "CASCADE",
     });
   },
 

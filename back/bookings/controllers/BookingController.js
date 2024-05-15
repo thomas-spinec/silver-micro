@@ -23,12 +23,76 @@ module.exports = {
   // ========================> GET BOOKING
   getBooking: (req, res) => {
     const { bookingId } = req.params;
+    const { userId } = req.user;
 
     BookingModel.findBooking({ id: bookingId })
       .then((booking) => {
+        if (!booking || booking.userId !== userId) {
+          return res.status(404).json({
+            status: false,
+            error: {
+              message: "Booking not found.",
+            },
+          });
+        }
         return res.status(200).json({
           status: true,
           data: booking.toJSON(),
+        });
+      })
+      .catch((err) => {
+        return res.status(500).json({
+          status: false,
+          error: err,
+        });
+      });
+  },
+
+  // ========================> GET BOOKING BY USER
+  getBookingByUser: (req, res) => {
+    const { userId } = req.user;
+
+    BookingModel.findAllBookings({ userId: userId })
+      .then((booking) => {
+        if (!booking) {
+          return res.status(404).json({
+            status: false,
+            error: {
+              message: "No bookings found for the user.",
+            },
+          });
+        }
+        return res.status(200).json({
+          status: true,
+          data: booking,
+        });
+      })
+      .catch((err) => {
+        console.log("err", err);
+        return res.status(500).json({
+          status: false,
+          error: err,
+        });
+      });
+  },
+
+  // ========================> GET BOOKING BY RESTAURANT
+  getBookingByRestaurant: (req, res) => {
+    const { restaurantId } = req.params;
+
+    BookingModel.findAllBookings({ restaurantId: restaurantId })
+      .then((booking) => {
+        if (!booking) {
+          return res.status(404).json({
+            status: false,
+            error: {
+              message: "No bookings found for the restaurant.",
+            },
+          });
+        }
+        return res.status(200).json({
+          status: true,
+          data: booking,
         });
       })
       .catch((err) => {
@@ -75,7 +139,7 @@ module.exports = {
     }
 
     const { userId } = req.user;
-    const booking = await BookingModel.findBooking({ userId: userId });
+    const booking = await BookingModel.findBooking({ id: bookingId });
 
     if (booking === null) {
       return res.status(404).json({

@@ -77,7 +77,36 @@ module.exports = {
     };
   },
 
-  isStaffFromThisRestaurant: (role) => {
+  isFromThisRestaurant: (req, res, next) => {
+    const {
+      user: { userId },
+      params: { restaurantId },
+    } = req;
+
+    ManagerModel.findManager({
+      userId: userId,
+      restaurantId: restaurantId,
+    })
+      .then((manager) => {
+        if (manager === null) {
+          return res.status(403).json({
+            status: false,
+            error: `You are not part of the staff.`,
+          });
+        }
+        req.manager = manager;
+        next();
+      })
+      .catch((err) => {
+        console.log("err", err);
+        return res.status(403).json({
+          status: false,
+          error: `You are not part of the staff.`,
+        });
+      });
+  },
+
+  isStaffFromThisRestaurantIs: (role) => {
     return (req, res, next) => {
       const {
         user: { userId },
