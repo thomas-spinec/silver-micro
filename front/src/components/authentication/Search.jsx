@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
-import { userActions } from "../services/userServices";
-import { UserContext } from "../context/userContext";
+import { userActions } from "../../services/userServices";
+import { UserContext } from "../../context/userContext";
 import { Mail, Utensils } from "lucide-react";
 
 function Search({ changeForm, setMail, setFirstname }) {

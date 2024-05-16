@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
-import { userActions } from "../services/userServices";
-import { UserContext } from "../context/userContext";
+import { userActions } from "../../services/userServices";
+import { UserContext } from "../../context/userContext";
 import { useNavigate } from "react-router-dom";
 
 function Login({ changeForm, mail, setMail, firstname, setFirstname }) {
