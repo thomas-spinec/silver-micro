@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../context/userContext";
-import { userActions } from "../services/userServices";
+import { UserContext } from "../../context/userContext";
+import { userActions } from "../../services/userServices";
 
-function Register({ changeForm, mail, setFirstname }) {
+function Register({ changeForm, mail, setMail, firstname, setFirstname }) {
   const { userContext, setUserContext } = useContext(UserContext);
   const [user, setUser] = useState({
     lastname: "",

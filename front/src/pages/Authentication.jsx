@@ -2,9 +2,9 @@ import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/userContext";
 
-import Login from "../components/Login";
-import Register from "../components/Register";
-import Search from "../components/Search";
+import Login from "../components/authentication/Login";
+import Register from "../components/authentication/Register";
+import Search from "../components/authentication/Search";
 
 function Authentication() {
   const navigate = useNavigate();
