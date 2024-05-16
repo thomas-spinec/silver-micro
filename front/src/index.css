@@ -2,10 +2,67 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Font import CLASHDISPLAY from assets/font */
+/* ClashDisplayRegular Import */
+@font-face {
+  font-family: "Clashdisplay_Regular";
+  src: local("ClashDisplayRegular"),
+    url("../src/assets/font/ClashDisplayRegular.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* ClashDisplayBold Import */
+@font-face {
+  font-family: "Clashdisplay_Bold";
+  src: local("ClashDisplayBold"),
+    url("../src/assets/font/ClashDisplayBold.otf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+/* ClashDisplaySemibold Import */
+@font-face {
+  font-family: "Clashdisplay_Semibold";
+  src: local("ClashDisplaySemibold"),
+    url("../src/assets/font/ClashDisplaySemibold.otf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* ClashDisplayMedium Import */
+@font-face {
+  font-family: "Clashdisplay_Medium";
+  src: local("ClashDisplayMedium"),
+    url("../src/assets/font/ClashDisplayMedium.otf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* ClashDisplayLight Import */
+@font-face {
+  font-family: "Clashdisplay_Light";
+  src: local("ClashDisplayLight"),
+    url("../src/assets/font/ClashDisplayLight.otf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+/* ClashDisplayExtraLight Import */
+@font-face {
+  font-family: "Clashdisplay_ExtraLight";
+  src: local("ClashDisplayExtraLight"),
+    url("../src/assets/font/ClashDisplayExtraLight.otf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  --fontregular: "Clashdisplay_Regular";
+  --fontbold: "Clashdisplay_Bold";
+  --fontsemibold: "Clashdisplay_Semibold";
+  --fontmedium: "Clashdisplay_Medium";
+  --fontlight: "Clashdisplay_Light";
+  --fontextralight: "Clashdisplay_ExtraLight";
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -17,6 +74,20 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* RESET CSS RULES */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+body {
+  height: 100%;
+  width: 100vw;
+  font-family: var(--fontregular), sans-serif;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -24,14 +95,6 @@ a {
 }
 a:hover {
   color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
 }
 
 h1 {

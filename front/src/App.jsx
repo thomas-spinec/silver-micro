@@ -1,10 +1,8 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Layout from "./pages/Layout";
-import Home from "./pages/Home";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Authentication from "./pages/Authentication";
+import Home from "./pages/Home";
+import Layout from "./pages/Layout";
 import NoPage from "./pages/NoPage";
-
-import "./App.css";
 
 function App() {
   return (
