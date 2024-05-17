@@ -107,8 +107,37 @@ module.exports = {
   },
 
   // ========================> GET ALL RESTAURANTS
-  getAllRestaurants: (req, res) => {
-    RestaurantModel.findAllRestaurants()
+  getAllRestaurants: async (req, res) => {
+    const { query: payload } = req;
+
+    let restaurants;
+    try {
+      if (payload && Object.keys(payload).length > 0) {
+        restaurants = await RestaurantModel.findAllRestaurants(payload);
+      } else {
+        restaurants = await RestaurantModel.findAllRestaurants();
+      }
+      if (!restaurants || restaurants.length === 0) {
+        return res.status(404).json({
+          status: false,
+          error: {
+            message: "Aucun restaurant trouvé",
+          },
+        });
+      }
+
+      return res.status(200).json({
+        status: true,
+        data: restaurants.map((restaurant) => restaurant.toJSON()),
+      });
+    } catch (err) {
+      return res.status(500).json({
+        status: false,
+        error: err,
+      });
+    }
+
+    RestaurantModel.findAllRestaurants(payload)
       .then((restaurants) => {
         return res.status(200).json({
           status: true,
