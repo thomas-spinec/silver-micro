@@ -78,11 +78,7 @@ export const restaurantActions = {
 
   // GET ALL RESTAURANTS (S'IL Y A UNE RECHERCHE PAR NOM)
   async getAllRestaurants(restaurant) {
-    console.log("RESTAURANT", restaurant);
     try {
-      //   const response = await instance.get("/restaurant/all", {
-      //     body: JSON.stringify(restaurant),
-      //   });
       const response = await instance.get("/restaurant/all", {
         params: restaurant,
       });
