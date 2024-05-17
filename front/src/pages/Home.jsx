@@ -24,12 +24,8 @@ function Home() {
             <button onClick={handleLogout}>Logout</button>
           </div>
         ) : (
-          <button
-            onClick={() =>
-              navigate("/authentication", { state: { action: "Chercher" } })
-            }
-          >
-            Connexion
+          <button onClick={() => navigate("/restaurants")}>
+            Les restaurants
           </button>
         )}
       </div>
