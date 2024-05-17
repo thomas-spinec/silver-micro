@@ -25,7 +25,7 @@ function Authentication() {
   }, [connected, navigate]);
 
   return (
-    <div className="w-[500px]">
+    <>
       {action === "Chercher" ? (
         <Search
           changeForm={changeForm}
@@ -47,7 +47,7 @@ function Authentication() {
           setFirstname={setFirstname}
         />
       )}
-    </div>
+    </>
   );
 }
 
