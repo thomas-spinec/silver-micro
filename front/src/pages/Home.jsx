@@ -14,6 +14,21 @@ function Home() {
         <h1>Home</h1>
         <p>Welcome to our website</p>
       </div>
+      <div>
+        {connected ? (
+          <div className="flex gap-4">
+            <div className="flex flex-col">
+              <h2>{userContext?.firstname}</h2>
+              <p>Your email is {userContext?.email}</p>
+            </div>
+            <button onClick={handleLogout}>Logout</button>
+          </div>
+        ) : (
+          <button onClick={() => navigate("/restaurants")}>
+            Les restaurants
+          </button>
+        )}
+      </div>
     </div>
   );
 }

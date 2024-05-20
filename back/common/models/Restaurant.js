@@ -1,4 +1,5 @@
 const { DataTypes } = require("sequelize");
+const { Op } = require("sequelize");
 
 const RestaurantModel = {
   id: {
@@ -62,8 +63,15 @@ module.exports = {
   },
 
   findAllRestaurants: (query) => {
-    return this.model.findAll({
-      where: query,
-    });
+    if (query) {
+      return this.model.findAll({
+        where: {
+          name: {
+            [Op.like]: `%${query.name}%`,
+          },
+        },
+      });
+    }
+    return this.model.findAll();
   },
 };

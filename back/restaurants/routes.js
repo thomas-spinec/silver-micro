@@ -17,11 +17,7 @@ router.get(
   RestaurantController.getRestaurant
 );
 
-router.get(
-  "/all",
-  [isAuthenticatedMiddleware.check],
-  RestaurantController.getAllRestaurants
-);
+router.get("/all", RestaurantController.getAllRestaurants);
 
 router.post(
   "/",

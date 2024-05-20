@@ -83,34 +83,60 @@ body {
   font-family: var(--fontregular), sans-serif;
 }
 
-h1,
-h2,
-h3 {
-  font-family: var(--fontbold);
-  line-height: 120%;
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
 }
 
-h3 {
-  font-size: 1.25rem;
-}
-
-.wrapperInputOutlined {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 3px;
-  border: 2px solid #5687ff;
-  width: 80%;
-  margin: auto;
-  color: #5687ff;
-  padding: 8px;
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
   cursor: pointer;
-  gap: 1rem;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
 }
 
-.wrapperInputOutlined:hover .logoGoogle path,
-.wrapperInputOutlined:hover {
-  background-color: #5687ff;
-  color: white;
-  fill: white;
+form input {
+  border-radius: 8px;
+  border: 1px solid #1a1a1a;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+/* animation loader dans la classe animate-spin */
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
 }
