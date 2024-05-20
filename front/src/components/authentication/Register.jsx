@@ -1,4 +1,6 @@
 import { useContext, useEffect, useState } from "react";
+import WomenEating from "../../../public/images/womenEating.jpg";
+import userLogo from "../../../public/logos/userLogo.png";
 import { UserContext } from "../../context/userContext";
 import { userActions } from "../../services/userServices";
 
@@ -223,32 +225,47 @@ function Register({ changeForm, mail, setMail, firstname, setFirstname }) {
   };
 
   return (
-    <div className="flex flex-col gap-4">
-      <div className="flex flex-col">
-        <p>Bienvenue sur TheSpoune</p>
-        <p>{mail}</p>
-        <p className=" italic">
+    <div className="flex flex-col items-center justify-center gap-12">
+      <div className="w-full relative h-full flex justify-center flex-col items-center mb-4">
+        <img
+          src={WomenEating}
+          alt="women eating in a restaurant"
+          className="w-[100vw] h-80 object-cover object-center"
+        />
+        <img
+          src={userLogo}
+          alt="user icon"
+          className="w-[100px] h-[100px] bg-white shadow-md z-10 rounded-full p-2 absolute -bottom-[50px]"
+        />
+      </div>
+      <div className="flex flex-col items-center">
+        <h3 className="font-bold text-xl pt-4">Bienvenue sur TheSpoune</h3>
+        <p className="font-bold text-Primary-blue/800">{mail}</p>
+        <p className="italic font-bold">
           Créez votre compte et réservez rapidement une table
         </p>
       </div>
-      <form className="flex flex-col border rounded-[15px] p-2 gap-4">
-        <div className="flex flex-col">
-          <div className="flex flex-col">
+      <form className="flex flex-col border rounded-[15px] p-2 gap-4 w-[80%]">
+        <div className="">
+          <div className="">
             {/* NAME */}
             <div className="flex flex-col">
-              <label htmlFor="lastname">Nom</label>
+              <label htmlFor="lastname" className="pl-2">
+                Nom
+              </label>
               <input
+                className="border-2 border-Washed-blue/300 rounded-[10px] p-2"
                 type="text"
                 id="lastname"
                 name="lastname"
-                placeholder="Nom"
+                placeholder="Votre nom"
                 required
                 onBlur={(e) => {
                   setUser({ ...user, lastname: e.target.value });
                   checkError("lastname", e.target.value);
                 }}
               />
-              <p className="text-red-500">{error?.lastname}</p>
+              <p className="text-Primary-Purple/400 px-2">{error?.lastname}</p>
             </div>
             {/* FIRSTNAME */}
             <div className="flex flex-col">
@@ -257,14 +274,14 @@ function Register({ changeForm, mail, setMail, firstname, setFirstname }) {
                 type="text"
                 id="firstname"
                 name="firstname"
-                placeholder="Prénom"
+                placeholder="Votre prénom"
                 required
                 onBlur={(e) => {
                   setUser({ ...user, firstname: e.target.value });
                   checkError("firstname", e.target.value);
                 }}
               />
-              <p className="text-red-500">{error?.firstname}</p>
+              <p className="text-Primary-Purple/300">{error?.firstname}</p>
             </div>
             {/* EMAIL HIDDEN */}
             <div className="flex flex-col">
@@ -287,13 +304,13 @@ function Register({ changeForm, mail, setMail, firstname, setFirstname }) {
                 id="phone"
                 name="phone"
                 required
-                placeholder="Téléphone"
+                placeholder="Votre numéro de téléphone"
                 onBlur={(e) => {
                   setUser({ ...user, phone: e.target.value });
                   checkError("phone", e.target.value);
                 }}
               />
-              <p className="text-red-500">{error?.phone}</p>
+              <p className="text-Primary-Purple/300">{error?.phone}</p>
             </div>
           </div>
           <div>
@@ -303,14 +320,14 @@ function Register({ changeForm, mail, setMail, firstname, setFirstname }) {
                 type="password"
                 id="password"
                 name="password"
-                placeholder="Mot de passe"
+                placeholder="Votre Mot de passe"
                 required
                 onBlur={(e) => {
                   setUser({ ...user, password: e.target.value });
                   checkError("password", e.target.value);
                 }}
               />
-              <p className="text-red-500">{error?.password}</p>
+              <p className="text-Primary-Purple/300">{error?.password}</p>
             </div>
             <div className="flex flex-col">
               <label htmlFor="password2">Confirmation</label>
@@ -325,7 +342,7 @@ function Register({ changeForm, mail, setMail, firstname, setFirstname }) {
                   checkError("password2", e.target.value);
                 }}
               />
-              <p className="text-red-500">{error?.password2}</p>
+              <p className="text-Primary-Purple/300">{error?.password2}</p>
             </div>
           </div>
         </div>
@@ -339,7 +356,7 @@ function Register({ changeForm, mail, setMail, firstname, setFirstname }) {
           }}
           className="bg-blue-500 text-white rounded-[15px] p-2 cursor-pointer w-[50%] self-center hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
         />
-        <p className="text-red-500">{error?.email}</p>
+        <p className="text-Primary-Purple/300">{error?.email}</p>
         {error.submit?.status !== null && (
           <p
             className={`${

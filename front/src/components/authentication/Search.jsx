@@ -66,12 +66,12 @@ function Search({ changeForm, setMail, setFirstname }) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center gap-[50px] ">
+    <div className="flex flex-col items-center justify-center gap-12 ">
       <div className="w-full relative h-full flex justify-center flex-col items-center mb-4">
         <img
           src={Restaurant}
           alt="restaurant table"
-          className="w-[100vw] h-80 object-cover z-0"
+          className="w-[100vw] h-80 object-cover object-center"
         />
         <img
           src={Ustensils}
@@ -95,7 +95,9 @@ function Search({ changeForm, setMail, setFirstname }) {
             }}
           />
         </div>
-        <p>{error?.email}</p>
+        <p className="font bold text-Primary-Purple/300 w-[80%] flex justify-center text-center m-auto ">
+          {error?.email}
+        </p>
         <input
           type="submit"
           value="Recherche"
@@ -108,7 +110,9 @@ function Search({ changeForm, setMail, setFirstname }) {
           className="bg-Primary-blue/500 text-white rounded-[3px] p-2 cursor-pointer w-[80%] self-center hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
         />
         {error.submit?.status !== null && (
-          <p className="font-bold">{error.submit.message}</p>
+          <p className="font bold text-Primary-Purple/300 w-[80%] flex justify-center text-center m-auto ">
+            {error.submit.message}
+          </p>
         )}
         <div className="w-full flex items-center justify-center gap-4">
           <hr className="h-[1px] w-2/5 " />
