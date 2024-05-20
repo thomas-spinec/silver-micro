@@ -96,7 +96,6 @@ function Login({ changeForm, mail, setMail, firstname, setFirstname }) {
           setMail("");
           setFirstname("");
           setConnected(true);
-          navigate("/");
         }, 2000);
       } else if (
         res.error.message === "User not found" ||

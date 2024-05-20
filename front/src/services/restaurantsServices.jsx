@@ -63,12 +63,9 @@ export const restaurantActions = {
     }
   },
   //FIND BY ID
-  async findById(restaurant) {
+  async findById(restaurantId) {
     try {
-      const response = await instance.post(
-        "/restaurant/findById",
-        JSON.stringify(restaurant)
-      );
+      const response = await instance.get("/restaurant/find/" + restaurantId);
       return response.data;
     } catch (err) {
       console.log(err);
