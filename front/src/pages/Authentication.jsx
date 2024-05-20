@@ -1,9 +1,9 @@
-import { useState, useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/userContext";
-import { useNavigate, useLocation } from "react-router-dom";
 
-import Register from "../components/authentication/Register";
 import Login from "../components/authentication/Login";
+import Register from "../components/authentication/Register";
 import Search from "../components/authentication/Search";
 
 function Authentication() {
@@ -25,7 +25,7 @@ function Authentication() {
   }, [connected, navigate]);
 
   return (
-    <div className="w-[500px]">
+    <>
       {action === "Chercher" ? (
         <Search
           changeForm={changeForm}
@@ -36,8 +36,6 @@ function Authentication() {
         <Register
           changeForm={changeForm}
           mail={mail}
-          setMail={setMail}
-          firstname={firstname}
           setFirstname={setFirstname}
         />
       ) : (
@@ -49,7 +47,7 @@ function Authentication() {
           setFirstname={setFirstname}
         />
       )}
-    </div>
+    </>
   );
 }
 
