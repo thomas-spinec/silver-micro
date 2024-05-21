@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { UserContext } from "../context/userContext";
 // import { userActions } from "../services/userServices";
+import { Button } from "@/@/components/ui/button";
 
 function Home() {
   const { userContext, connected, handleLogout } = useContext(UserContext);
@@ -12,6 +13,7 @@ function Home() {
     <div className="flex justify-evenly !w-[100%]">
       <div>
         <h1>Home</h1>
+        <Button>Click me</Button>
         <p>Welcome to our website</p>
       </div>
       <div>
