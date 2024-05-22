@@ -15,7 +15,7 @@ function Home() {
         <p>Welcome to our website</p>
       </div>
       <div>
-        {connected ? (
+        {connected && (
           <div className="flex gap-4">
             <div className="flex flex-col">
               <h2>{userContext?.firstname}</h2>
@@ -23,11 +23,11 @@ function Home() {
             </div>
             <button onClick={handleLogout}>Logout</button>
           </div>
-        ) : (
-          <button onClick={() => navigate("/restaurants")}>
-            Les restaurants
-          </button>
         )}
+
+        <button onClick={() => navigate("/restaurants")}>
+          Les restaurants
+        </button>
       </div>
     </div>
   );

@@ -15,6 +15,7 @@ function Restau() {
   const { connected } = useContext(UserContext);
   const [modalAuth, setModalAuth] = useState(false);
   const [modalBooking, setModalBooking] = useState(false);
+  const [maxCapacity, setMaxCapacity] = useState(null);
 
   const fetchRestaurant = async () => {
     const data = await restaurantActions.findById(id);
@@ -30,6 +31,7 @@ function Restau() {
 
   useEffect(() => {
     if (restaurant) {
+      setMaxCapacity(restaurant.data.maxCapacity);
       console.log("RESTAURANT", restaurant);
     }
   }, [restaurant]);
@@ -67,7 +69,13 @@ function Restau() {
       )}
 
       {modalAuth && <ModalAuth setModalAuth={setModalAuth} />}
-      {modalBooking && <ModalBooking setModalBooking={setModalBooking} />}
+      {modalBooking && (
+        <ModalBooking
+          setModalBooking={setModalBooking}
+          id={id}
+          maxCapacity={maxCapacity}
+        />
+      )}
     </div>
   );
 }

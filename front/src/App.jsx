@@ -6,8 +6,6 @@ import Restaurants from "./pages/Restaurants";
 import Restau from "./pages/Restau";
 import NoPage from "./pages/NoPage";
 
-import "./App.css";
-
 function App() {
   return (
     <BrowserRouter>
