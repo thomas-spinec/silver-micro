@@ -15,6 +15,10 @@ router.get("/find/:restaurantId", RestaurantController.getRestaurant);
 
 router.get("/all", RestaurantController.getAllRestaurants);
 
+router.get("/byCity/:city", RestaurantController.getRestaurantsByCity);
+
+router.get("/allCities", RestaurantController.getAllCities);
+
 router.post(
   "/",
   [isAuthenticatedMiddleware.check],

@@ -56,6 +56,21 @@ module.exports = {
     });
   },
 
+  findAllCities: () => {
+    return this.model.findAll({
+      attributes: ["city"],
+      group: ["city"],
+    });
+  },
+
+  findRestaurantsByCity: (city) => {
+    return this.model.findAll({
+      where: {
+        city: city,
+      },
+    });
+  },
+
   updateRestaurant: (query, updatedValue) => {
     return this.model.update(updatedValue, {
       where: query,

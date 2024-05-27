@@ -145,4 +145,58 @@ module.exports = {
       });
     }
   },
+
+  // ========================> GET ALL CITIES
+  getAllCities: async (req, res) => {
+    try {
+      const cities = await RestaurantModel.findAllCities();
+
+      if (!cities || cities.length === 0) {
+        return res.status(404).json({
+          status: false,
+          error: {
+            message: "Aucune ville trouvée",
+          },
+        });
+      }
+
+      return res.status(200).json({
+        status: true,
+        data: cities.map((city) => city.city),
+      });
+    } catch (err) {
+      return res.status(500).json({
+        status: false,
+        error: err,
+      });
+    }
+  },
+
+  // ========================> GET RESTAURANTS BY CITY
+  getRestaurantsByCity: (req, res) => {
+    const { city } = req.params;
+
+    RestaurantModel.findRestaurantsByCity(city)
+      .then((restaurants) => {
+        if (!restaurants || restaurants.length === 0) {
+          return res.status(404).json({
+            status: false,
+            error: {
+              message: "Aucun restaurant trouvé",
+            },
+          });
+        }
+
+        return res.status(200).json({
+          status: true,
+          data: restaurants.map((restaurant) => restaurant.toJSON()),
+        });
+      })
+      .catch((err) => {
+        return res.status(500).json({
+          status: false,
+          error: err,
+        });
+      });
+  },
 };
