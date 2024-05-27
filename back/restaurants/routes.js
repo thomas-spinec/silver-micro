@@ -11,11 +11,7 @@ const RestaurantController = require("./controllers/RestaurantController");
 // JSON Schema Imports for payload verification
 // const updateRestaurantPayload = require("./schemas/updateRestaurantPayload");
 
-router.get(
-  "/",
-  [isAuthenticatedMiddleware.check],
-  RestaurantController.getRestaurant
-);
+router.get("/find/:restaurantId", RestaurantController.getRestaurant);
 
 router.get("/all", RestaurantController.getAllRestaurants);
 

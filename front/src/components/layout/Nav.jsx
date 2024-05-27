@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { useWindowSize } from "@uidotdev/usehooks";
-import Logo from "../../../public/logos/Logo.svg";
+import Logo from "/logos/Logo.svg";
 import { UserContext } from "../../context/userContext";
 
 function Nav() {

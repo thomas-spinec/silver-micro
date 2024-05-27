@@ -1,7 +1,7 @@
 import { History, LockKeyhole, Mail } from "lucide-react";
 import { useContext, useState } from "react";
-import Restaurant from "../../../public/images/restaurant.jpg";
-import Ustensils from "../../../public/logos/ustensils.png";
+import Restaurant from "/images/restaurant.jpg";
+import Ustensils from "/logos/ustensils.png";
 import { UserContext } from "../../context/userContext";
 import { userActions } from "../../services/userServices";
 

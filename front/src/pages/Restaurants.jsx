@@ -22,7 +22,7 @@ function Restaurants() {
 
   const displayRestaurants = (restaurants) => {
     if (restaurants.error) {
-      return <p>{restaurants.error.message}</p>;
+      return <p>Le restaurant demandé n'a pas été trouvé</p>;
     }
     return restaurants.data.map((restaurant) => (
       <CardRestau key={restaurant.id} restaurant={restaurant} />
@@ -30,7 +30,6 @@ function Restaurants() {
   };
 
   useEffect(() => {
-    console.log("SEARCH", search);
     fetchRestaurants(search);
   }, [search.name]);
 

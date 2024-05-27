@@ -6,7 +6,7 @@ import Login from "../components/authentication/Login";
 import Register from "../components/authentication/Register";
 import Search from "../components/authentication/Search";
 
-function Authentication() {
+function Authentication({ modal = false, setModalAuth }) {
   const navigate = useNavigate();
   const location = useLocation();
   const [action, setAction] = useState(location.state?.action ?? "Chercher");
@@ -20,7 +20,11 @@ function Authentication() {
 
   useEffect(() => {
     if (connected) {
-      navigate("/");
+      if (modal) {
+        setModalAuth(false);
+      } else {
+        navigate("/");
+      }
     }
   }, [connected, navigate]);
 
