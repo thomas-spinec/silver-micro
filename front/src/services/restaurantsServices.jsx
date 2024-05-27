@@ -14,16 +14,6 @@ export const restaurantActions = {
       return err.response.data;
     }
   },
-  //READ
-  async read() {
-    try {
-      const response = await instance.get("/restaurant/read");
-      return response.data;
-    } catch (err) {
-      console.log(err);
-      return err.response.data;
-    }
-  },
   //UPDATE
   async update(restaurant) {
     try {
@@ -73,12 +63,34 @@ export const restaurantActions = {
     }
   },
 
-  // GET ALL RESTAURANTS (S'IL Y A UNE RECHERCHE PAR NOM)
+  // GET ALL RESTAURANTS (S'IL Y A UNE RECHERCHE PAR NOM OU VILLE)
   async getAllRestaurants(restaurant) {
     try {
       const response = await instance.get("/restaurant/all", {
         params: restaurant,
       });
+      return response.data;
+    } catch (err) {
+      console.log(err);
+      return err.response.data;
+    }
+  },
+
+  // GET ALL CITIES
+  async getAllCities() {
+    try {
+      const response = await instance.get("/restaurant/allCities");
+      return response.data;
+    } catch (err) {
+      console.log(err);
+      return err.response.data;
+    }
+  },
+
+  // GET RESTAURANTS BY CITY
+  async getRestaurantsByCity(city) {
+    try {
+      const response = await instance.get("/restaurant/byCity/" + city);
       return response.data;
     } catch (err) {
       console.log(err);
