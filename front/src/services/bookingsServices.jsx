@@ -5,7 +5,7 @@ export const bookingActions = {
   async create(booking) {
     try {
       const response = await instance.post(
-        "/booking/create",
+        "/booking/",
         JSON.stringify(booking)
       );
       return response.data;

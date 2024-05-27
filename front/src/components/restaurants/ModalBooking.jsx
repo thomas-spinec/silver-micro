@@ -6,10 +6,14 @@ import { X } from "lucide-react";
 
 function ModalBooking({ setModalBooking, id, maxCapacity }) {
   const [bookings, setBookings] = useState([]);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState({
+    status: null,
+    message: null,
+  });
   const [nbParticipants, setNbParticipants] = useState(1);
   const [date, setDate] = useState(null);
   const [hour, setHour] = useState(null);
+  const [comment, setComment] = useState(null);
   const [timeObject, setTimeObject] = useState([
     { time: "10:00", isDisabled: false },
     { time: "11:00", isDisabled: false },
@@ -72,13 +76,29 @@ function ModalBooking({ setModalBooking, id, maxCapacity }) {
     }
   };
 
+  const book = async (dataToPost) => {
+    const data = await bookingActions.create(dataToPost);
+    if (data.status) {
+      console.log("BOOKING CREATED", data);
+      setError({
+        status: true,
+        message: "Réservation effectuée, vous allez être redirigé.",
+      });
+      setTimeout(() => {
+        setModalBooking(false);
+      }, 2000);
+    } else {
+      console.log("ERROR", data.error.message);
+      setError({
+        status: false,
+        message: data.error.message,
+      });
+    }
+  };
+
   useEffect(() => {
     fetchBookings();
   }, []);
-
-  useEffect(() => {
-    // console.log("BOOKINGS", bookings);
-  }, [bookings]);
 
   return (
     <div className="bg-white p-4 opacity-90 w-[100vw] h-[100%] absolute top-0 left-0 z-10">
@@ -107,12 +127,12 @@ function ModalBooking({ setModalBooking, id, maxCapacity }) {
               }}
             />
           </div>
-
           <div>
             <label htmlFor="date">Date</label>
             <input
               type="date"
               name="date"
+              required
               min={new Date().toISOString().split("T")[0]}
               id="date"
               onChange={(e) => {
@@ -126,9 +146,6 @@ function ModalBooking({ setModalBooking, id, maxCapacity }) {
                 let nbParticipantsPerTime = nbParticipants;
                 isBookingAvailable(time);
                 let isDisabled = timeObject[i].isDisabled;
-                // console.log("TIME", time);
-                // console.log("IS TIME AVAILABLE", timeObject[i]);
-                // console.log("IS DISABLED", isDisabled, i);
 
                 return (
                   <div key={time}>
@@ -152,26 +169,52 @@ function ModalBooking({ setModalBooking, id, maxCapacity }) {
               })}
             </div>
           )}
+          <div className="flex flex-col">
+            <label htmlFor="comment">Commentaire (éventuelles allergies)</label>
+            <textarea
+              name="comment"
+              id="comment"
+              cols="30"
+              rows="10"
+              placeholder="Ajoutez un commentaire"
+              onChange={(e) => {
+                if (e.target.value === "") {
+                  setComment(null);
+                } else {
+                  setComment(e.target.value);
+                }
+              }}
+            ></textarea>
+          </div>
           <button
             type="button"
+            disabled={!date || !hour}
             onClick={() => {
-              console.log("ID", id);
-              console.log("NB PARTICIPANTS", nbParticipants);
-              console.log("MAX CAPACITY", maxCapacity);
-              console.log("DATE", date);
-              console.log("HOUR", hour);
               let formattedDate = date + " " + hour;
               let dataToPost = {
                 restaurantId: id,
                 numberOfGuests: nbParticipants,
                 bookingDate: formattedDate,
+                comment: comment,
               };
               console.log("DATA TO POST", dataToPost);
+              book(dataToPost);
             }}
           >
             Valider
           </button>
         </form>
+        {error && (
+          <div>
+            <p
+              className={`flex justify-center ${
+                error.status ? "text-green-500" : "text-red-500"
+              }`}
+            >
+              {error.message}
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
