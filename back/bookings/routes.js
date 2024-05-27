@@ -27,7 +27,7 @@ router.get(
   "/byRestaurant/:restaurantId",
   [
     isAuthenticatedMiddleware.check,
-    CheckPermissionMiddleware.isFromThisRestaurant,
+    // CheckPermissionMiddleware.isFromThisRestaurant,
   ],
   BookingController.getBookingByRestaurant
 );

@@ -1,12 +1,12 @@
 import instance from "./config";
 
-export const restaurantActions = {
+export const bookingActions = {
   //CREATE
-  async create(restaurant) {
+  async create(booking) {
     try {
       const response = await instance.post(
-        "/restaurant/create",
-        JSON.stringify(restaurant)
+        "/booking/",
+        JSON.stringify(booking)
       );
       return response.data;
     } catch (err) {
@@ -17,7 +17,7 @@ export const restaurantActions = {
   //READ
   async read() {
     try {
-      const response = await instance.get("/restaurant/read");
+      const response = await instance.get("/booking/read");
       return response.data;
     } catch (err) {
       console.log(err);
@@ -25,11 +25,11 @@ export const restaurantActions = {
     }
   },
   //UPDATE
-  async update(restaurant) {
+  async update(booking) {
     try {
       const response = await instance.put(
-        "/restaurant/update",
-        JSON.stringify(restaurant)
+        "/booking/update",
+        JSON.stringify(booking)
       );
       return response.data;
     } catch (err) {
@@ -38,10 +38,10 @@ export const restaurantActions = {
     }
   },
   //DELETE
-  async delete(restaurant) {
+  async delete(booking) {
     try {
-      const response = await instance.delete("/restaurant/delete", {
-        data: JSON.stringify(restaurant),
+      const response = await instance.delete("/booking/delete", {
+        data: JSON.stringify(booking),
       });
       return response.data;
     } catch (err) {
@@ -50,11 +50,11 @@ export const restaurantActions = {
     }
   },
   //FIND
-  async find(restaurant) {
+  async find(booking) {
     try {
       const response = await instance.post(
-        "/restaurant/find",
-        JSON.stringify(restaurant)
+        "/booking/find",
+        JSON.stringify(booking)
       );
       return response.data;
     } catch (err) {
@@ -62,23 +62,13 @@ export const restaurantActions = {
       return err.response.data;
     }
   },
-  //FIND BY ID
-  async findById(restaurantId) {
-    try {
-      const response = await instance.get("/restaurant/find/" + restaurantId);
-      return response.data;
-    } catch (err) {
-      console.log(err);
-      return err.response.data;
-    }
-  },
 
-  // GET ALL RESTAURANTS (S'IL Y A UNE RECHERCHE PAR NOM)
-  async getAllRestaurants(restaurant) {
+  //FIND BY RESTAURANT
+  async findByRestaurant(restaurantId) {
     try {
-      const response = await instance.get("/restaurant/all", {
-        params: restaurant,
-      });
+      const response = await instance.get(
+        `/booking/byRestaurant/${restaurantId}`
+      );
       return response.data;
     } catch (err) {
       console.log(err);

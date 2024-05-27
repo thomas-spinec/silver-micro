@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import WomenEating from "../../../public/images/womenEating.jpg";
-import userLogo from "../../../public/logos/userLogo.png";
+import WomenEating from "/images/womenEating.jpg";
+import userLogo from "/logos/userLogo.png";
 import { UserContext } from "../../context/userContext";
 import { userActions } from "../../services/userServices";
 
