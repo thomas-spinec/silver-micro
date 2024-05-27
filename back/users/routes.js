@@ -65,7 +65,7 @@ router.get(
 // );
 
 router.put(
-  "/update",
+  "/update/:choice",
   [isAuthenticatedMiddleware.check],
   UserController.updateUser
 );

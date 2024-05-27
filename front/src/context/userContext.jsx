@@ -7,6 +7,7 @@ const UserProvider = ({ children }) => {
     email: null,
     firstname: null,
     lastname: null,
+    phone: null,
     id_user: null,
     role: null,
   });
@@ -21,12 +22,14 @@ const UserProvider = ({ children }) => {
     localStorage.removeItem("role");
     localStorage.removeItem("firstname");
     localStorage.removeItem("lastname");
+    localStorage.removeItem("phone");
     localStorage.removeItem("token");
     setUserContext({
       email: null,
       firstname: null,
       lastname: null,
       id_user: null,
+      phone: null,
       role: null,
     });
     setToken(null);
@@ -40,6 +43,7 @@ const UserProvider = ({ children }) => {
       userContext?.role &&
       userContext?.firstname &&
       userContext?.lastname &&
+      userContext?.phone &&
       token
     ) {
       localStorage.setItem("email", userContext.email);
@@ -47,6 +51,7 @@ const UserProvider = ({ children }) => {
       localStorage.setItem("role", userContext.role);
       localStorage.setItem("firstname", userContext.firstname);
       localStorage.setItem("lastname", userContext.lastname);
+      localStorage.setItem("phone", userContext.phone);
       localStorage.setItem("token", token);
     } else if (localStorage.getItem("email")) {
       setUserContext({
@@ -55,6 +60,7 @@ const UserProvider = ({ children }) => {
         role: localStorage.getItem("role"),
         firstname: localStorage.getItem("firstname"),
         lastname: localStorage.getItem("lastname"),
+        phone: localStorage.getItem("phone"),
       });
       setToken(localStorage.getItem("token"));
       setConnected(true);
@@ -62,24 +68,12 @@ const UserProvider = ({ children }) => {
   }, [userContext]);
 
   useEffect(() => {
-    console.log("user", userContext);
+    console.log("user context", userContext);
   }, [userContext]);
 
   useEffect(() => {
     console.log("connected", connected);
   }, [connected]);
-
-  // si l'utilisateur est en localstorage, on le connecte automatiquement
-  // useEffect(() => {
-  //   if (localStorage.getItem("login")) {
-  //     setUser({
-  //       login: localStorage.getItem("login"),
-  //       id_user: localStorage.getItem("id_user"),
-  //     });
-
-  //     setConnected(true);
-  //   }
-  // }, []);
 
   return useMemo(
     () => (
