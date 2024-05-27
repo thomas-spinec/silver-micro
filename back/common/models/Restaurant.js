@@ -66,8 +66,14 @@ module.exports = {
     if (query) {
       return this.model.findAll({
         where: {
-          name: {
-            [Op.like]: `%${query.name}%`,
+          [Op.or]: {
+            name: {
+              [Op.like]: `%${query.name}%`,
+            },
+
+            city: {
+              [Op.like]: `%${query.name}%`,
+            },
           },
         },
       });
