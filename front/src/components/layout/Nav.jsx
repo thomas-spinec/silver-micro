@@ -21,7 +21,7 @@ function Nav() {
 
   return (
     <div className="w-full">
-      <nav className="h-8 py-8 px-4 flex justify-between items-center shadow-md">
+      <nav className="h-18 py-8 px-4 flex justify-between items-center shadow-md">
         <Link to="/">
           <img src={Logo} alt="Logo" className="h-[100%] pt-2" />
         </Link>

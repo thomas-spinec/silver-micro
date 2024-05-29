@@ -1,6 +1,6 @@
-import Search from "./Search";
+import { Link } from "react-router-dom";
 
-function Hero({ setSearch }) {
+function Hero() {
   return (
     <div className="bg-black/20 h-full">
       <div className="h-full flex justify-center items-center p-4 bg-Primary-blue/400/10">
@@ -17,9 +17,15 @@ function Hero({ setSearch }) {
             </p>
           </div>
           {/* Form Section  */}
-          <div className="flex space-y-4 bg-white rounded-md p-2 relative">
+          <div className="flex space-y-4 bg-transparent rounded-md p-2 relative">
             <div className="grid grid-cols-1 sm-grid-cols-3 py-1">
-              <Search setSearch={setSearch} />
+              {/* CTA EXPLORER */}
+              <Link
+                to="/restaurants"
+                className="bg-Primary-Purple/300 p-2 text-white font-['ClashDisplay-Medium'] rounded-2xl border-2 border-Primary-Purple/300 hover:bg-Primary-Purple/300 hover:text-white hover:border-white transition-all duration-300 ease-in-out text-center"
+              >
+                EXPLORER
+              </Link>
             </div>
           </div>
         </div>
