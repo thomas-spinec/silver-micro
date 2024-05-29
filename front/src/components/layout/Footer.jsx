@@ -1,10 +1,10 @@
 import { MapPin, Phone } from "lucide-react";
-import Logo from "../../../public/logos/Logo.svg";
-import Facebook from "../../../public/logos/facebook-logo.png";
-import Github from "../../../public/logos/github-logo.png";
-import Instagram from "../../../public/logos/instagram-logo.png";
-import Linkedin from "../../../public/logos/linkedin-logo.png";
-import Portfolio from "../../../public/logos/portfolio-logo.png";
+import Logo from "/logos/Logo.svg";
+import Facebook from "/logos/facebook-logo.png";
+import Github from "/logos/github-logo.png";
+import Instagram from "/logos/instagram-logo.png";
+import Linkedin from "/logos/linkedin-logo.png";
+import Portfolio from "/logos/portfolio-logo.png";
 
 function Footer() {
   return (

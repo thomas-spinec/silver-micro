@@ -35,21 +35,21 @@ function Testimonial() {
       fullname: "Amine Necib",
       job: "Étudiant",
       text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Est harum porro, dolorem excepturi perferendis tempore sint vero neque.",
-      img: "../../../public/images/Amine.png",
+      img: "/images/Amine.png",
     },
     {
       id: 2,
       fullname: "Julie Lambert",
       job: "Étudiante",
       text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Est harum porro, dolorem excepturi perferendis tempore sint vero neque.",
-      img: "../../../public/images/Julie.png",
+      img: "/images/Julie.png",
     },
     {
       id: 3,
       fullname: "Thomas Spinec",
       job: "Étudiant",
       text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Est harum porro, dolorem excepturi perferendis tempore sint vero neque.",
-      img: "../../../public/images/Thomas.png",
+      img: "/images/Thomas.png",
     },
   ];
 

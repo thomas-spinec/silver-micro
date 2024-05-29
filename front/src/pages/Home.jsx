@@ -6,9 +6,9 @@ import { UserContext } from "../context/userContext";
 import AppStore from "@/components/home/AppStore";
 import Testimonial from "@/components/home/Testimonial";
 import Footer from "@/components/layout/Footer";
-import FoodVideo from "../../public/videos/food.mp4";
 import Hero from "../components/home/Hero";
 import Slider from "../components/home/Slider";
+import FoodVideo from "/videos/food.mp4";
 
 function Home() {
   const { userContext, connected, handleLogout } = useContext(UserContext);

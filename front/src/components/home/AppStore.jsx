@@ -1,6 +1,6 @@
-import AppleStoreBadge from "../../../public/logos/AppleStoreBadge.png";
-import GooglePlayBadge from "../../../public/logos/GoogleStoreBadge.png";
-import Gif from "../../../public/logos/bubble-gum-social-media.gif";
+import AppleStoreBadge from "/logos/AppleStoreBadge.png";
+import GooglePlayBadge from "/logos/GoogleStoreBadge.png";
+import Gif from "/logos/bubble-gum-social-media.gif";
 
 function AppStore() {
   return (

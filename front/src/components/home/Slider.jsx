@@ -6,12 +6,12 @@ import "swiper/css/pagination";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { EffectCoverflow, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import restaurant1 from "../../../public/images/restaurants/restaurant1.jpg";
-import restaurant2 from "../../../public/images/restaurants/restaurant2.jpg";
-import restaurant3 from "../../../public/images/restaurants/restaurant3.jpg";
-import restaurant4 from "../../../public/images/restaurants/restaurant4.jpg";
-import restaurant5 from "../../../public/images/restaurants/restaurant5.jpg";
 import Card from "../restaurants/Card";
+import restaurant1 from "/images/restaurants/restaurant1.jpg";
+import restaurant2 from "/images/restaurants/restaurant2.jpg";
+import restaurant3 from "/images/restaurants/restaurant3.jpg";
+import restaurant4 from "/images/restaurants/restaurant4.jpg";
+import restaurant5 from "/images/restaurants/restaurant5.jpg";
 
 function Slider() {
   const sliderInfos = [
