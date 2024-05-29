@@ -39,6 +39,10 @@ module.exports = {
       fontFamily: myTheme.fontFamily,
       boxShadow: myTheme.boxShadow,
       borderRadius: myTheme.borderRadius,
+      container: {
+        center: true,
+        padding: { DEFAULT: "1rem", sm: "3rem" },
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

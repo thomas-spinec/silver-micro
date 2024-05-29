@@ -1,10 +1,10 @@
 import { CircleUserRound } from "lucide-react";
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { useWindowSize } from "@uidotdev/usehooks";
-import Logo from "/logos/Logo.svg";
 import { UserContext } from "../../context/userContext";
+import Logo from "/logos/Logo.svg";
 
 function Nav() {
   const { connected } = useContext(UserContext);
@@ -21,9 +21,9 @@ function Nav() {
 
   return (
     <div className="w-full">
-      <nav className="h-14 py-10 px-4 flex justify-between items-center ">
+      <nav className="h-8 py-8 px-4 flex justify-between items-center shadow-md">
         <Link to="/">
-          <img src={Logo} alt="Logo" className="h-[100%]" />
+          <img src={Logo} alt="Logo" className="h-[100%] pt-2" />
         </Link>
         <ul className="flex place-items-center gap-2">
           {connected ? (
@@ -37,7 +37,10 @@ function Nav() {
             </>
           ) : (
             <li>
-              <Link to="/authentication" className="text-Primary-blue/500">
+              <Link
+                to="/authentication"
+                className="bg-clip-text text-transparent bg-gradient-to-r from-Primary-Purple/300 to-Primary-blue/600 text-lg font-[ClashDisplay-SemiBold]"
+              >
                 {isMobile ? (
                   <CircleUserRound className="h-8 w-8 text-Primary-blue/500" />
                 ) : (
