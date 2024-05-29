@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Restaurants from "./components/restaurants/Restaurants";
 import Authentication from "./pages/Authentication";
 import Home from "./pages/Home";
 import Layout from "./pages/Layout";
@@ -6,6 +7,7 @@ import Restaurants from "./pages/Restaurants";
 import Restau from "./pages/Restau";
 import Profil from "./pages/Profil";
 import NoPage from "./pages/NoPage";
+import Restau from "./pages/Restau";
 
 function App() {
   return (

@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { UserContext } from "../context/userContext";
 
@@ -64,7 +64,12 @@ function Restau() {
       ) : (
         <div className="mt-[10px]">
           <p>Pour réserver, vous devez vous authentifier :</p>
-          <button onClick={() => setModalAuth(true)}>S'authentifier</button>
+          <button
+            className="bg-Washed-purple/700 text-white hover:bg-Washed-purple/400 transition-colors p-2 rounded-md mt-2 shadow-md focus:outline-none"
+            onClick={() => setModalAuth(true)}
+          >
+            S'authentifier
+          </button>
         </div>
       )}
 

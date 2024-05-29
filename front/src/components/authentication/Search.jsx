@@ -66,12 +66,12 @@ function Search({ changeForm, setMail, setFirstname }) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center gap-12 ">
+    <div className="flex flex-col items-center justify-center gap-8 ">
       <div className="w-full relative h-full flex justify-center flex-col items-center mb-4">
         <img
           src={Restaurant}
           alt="restaurant table"
-          className="w-[100vw] h-80 object-cover object-center"
+          className="w-[100vw] h-[240px] object-cover object-center"
         />
         <img
           src={Ustensils}
@@ -80,7 +80,7 @@ function Search({ changeForm, setMail, setFirstname }) {
         />
       </div>
       <h3 className="font-bold text-xl pt-4">Merci de saisir votre e-mail</h3>
-      <form className="fw-full sm:justify-center sm:w-[400px] space-y-6 flex flex-col w-full">
+      <form className="w-full sm:justify-center sm:w-[400px] space-y-4 flex flex-col">
         <div className="flex justify-center rounded-[3px] items-center border-[2px] w-[80%] m-auto">
           <Mail size={30} fill="#000" className="text-[#fff]" />
           <input
@@ -120,7 +120,7 @@ function Search({ changeForm, setMail, setFirstname }) {
           <hr className="h-[1px] w-2/5" />
         </div>
 
-        <div className="wrapperInputOutlined">
+        <div className="wrapperInputOutlined flex items-center justify-center space-x-4">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="logoGoogle"
@@ -136,13 +136,13 @@ function Search({ changeForm, setMail, setFirstname }) {
           <input type="submit" value="Se connecter avec Google" />
         </div>
 
-        <div className="m-auto p-4 flex flex-col ">
-          <div className="flex flex-col items-start gap-4">
-            <div className="flex gap-2">
+        <div className="flex flex-col justify-center px-4">
+          <div className="flex flex-col items-start justify-center gap-4">
+            <div className="flex justify-center space-x-2 pl-6">
               <LockKeyhole />
-              <p className="">Aucunes publications sans votre autorisation.</p>
+              <p className="">Aucunes publications sans votre accord.</p>
             </div>
-            <div className="flex gap-2">
+            <div className="flex justify-center space-x-2 pl-6">
               <History />
               <p className="">C'est plus rapide comme ca! </p>
             </div>
