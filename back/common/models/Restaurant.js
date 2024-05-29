@@ -35,6 +35,11 @@ const RestaurantModel = {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  image: {
+    type: DataTypes.STRING,
+    allowNull: true,
+    defaultValue: "/image/default.png",
+  },
 };
 
 module.exports = {

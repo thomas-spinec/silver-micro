@@ -1,6 +1,7 @@
 const { DataTypes } = require("sequelize");
 const RestaurantModel = require("./Restaurant");
 const UserModel = require("./User");
+const { Op } = require("sequelize");
 
 const BookingModel = {
   id: {
@@ -73,8 +74,25 @@ module.exports = {
   },
 
   findAllBookings: (query) => {
+    const date = new Date();
+
+    const gmtDate = new Date(
+      date.getTime() - date.getTimezoneOffset() * 60000
+    ).toISOString();
+
+    console.log(gmtDate);
     return this.model.findAll({
-      where: query,
+      where: {
+        [Op.and]: {
+          userId: `${query.userId}`,
+
+          bookingDate: {
+            [Op.gt]: `${gmtDate}`,
+          },
+        },
+      },
+      order: [["bookingDate", "ASC"]],
+      include: ["restaurant"],
     });
   },
 };

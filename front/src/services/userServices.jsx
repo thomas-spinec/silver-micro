@@ -5,8 +5,7 @@ export const userActions = {
   //REGISTER
   async register(user) {
     try {
-      const response = await instance.post("/signup",JSON.stringify(user) 
-      );
+      const response = await instance.post("/signup", JSON.stringify(user));
       return response.data;
     } catch (err) {
       console.log(err);
@@ -16,8 +15,7 @@ export const userActions = {
   //LOGIN
   async login(user) {
     try {
-      const response = await instance.post("/login",JSON.stringify(user) 
-    );
+      const response = await instance.post("/login", JSON.stringify(user));
       return response.data;
     } catch (err) {
       console.log(err);
@@ -40,7 +38,23 @@ export const userActions = {
   //find user by email
   async findUserByEmail(email) {
     try {
-      const response = await instance.post("/user/find",JSON.stringify({ email })
+      const response = await instance.post(
+        "/user/find",
+        JSON.stringify({ email })
+      );
+      return response.data;
+    } catch (err) {
+      console.log(err);
+      return err.response.data;
+    }
+  },
+
+  //update user
+  async updateUser(user, choice) {
+    try {
+      const response = await instance.put(
+        `/user/update/${choice}`,
+        JSON.stringify(user)
       );
       return response.data;
     } catch (err) {
