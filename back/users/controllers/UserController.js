@@ -59,9 +59,6 @@ module.exports = {
       params: { choice },
     } = req;
 
-    console.log("payload", payload);
-    console.log("choice", choice);
-
     // IF the payload does not have any keys,
     // THEN we can return an error, as nothing can be updated
     if (!Object.keys(payload).length) {
@@ -95,18 +92,13 @@ module.exports = {
             });
           }
           const newEncryptedPassword = encryptPassword(payload.newPassword);
-          return UserModel.updateUser(
+          UserModel.updateUser(
             { id: userId },
             { password: newEncryptedPassword }
-          );
-        })
-        .then(() => {
-          return UserModel.findUser({ id: userId });
-        })
-        .then((user) => {
-          return res.status(200).json({
-            status: true,
-            data: user.toJSON(),
+          ).then(() => {
+            return res.status(200).json({
+              status: true,
+            });
           });
         })
         .catch((err) => {
@@ -116,7 +108,6 @@ module.exports = {
           });
         });
     } else if (choice === "profile") {
-      console.log("profile");
       if (!payload.password) {
         return res.status(400).json({
           status: false,
@@ -129,7 +120,6 @@ module.exports = {
       // on check le password
       UserModel.findUser({ id: userId })
         .then((user) => {
-          console.log("user", user);
           const encryptedPassword = encryptPassword(payload.password);
           if (user.password !== encryptedPassword) {
             return res.status(400).json({
@@ -141,15 +131,14 @@ module.exports = {
           }
           // on supprrime le password du payload;
           delete payload.password;
-          return UserModel.updateUser({ id: userId }, payload);
-        })
-        .then(() => {
-          return UserModel.findUser({ id: userId });
-        })
-        .then((user) => {
-          return res.status(200).json({
-            status: true,
-            data: user.toJSON(),
+          UserModel.updateUser({ id: userId }, payload).then(() => {
+            UserModel.findUser({ id: userId }).then((NewUser) => {
+              console.log("USER", NewUser);
+              return res.status(200).json({
+                status: true,
+                data: NewUser.dataValues,
+              });
+            });
           });
         })
         .catch((err) => {
@@ -159,23 +148,6 @@ module.exports = {
           });
         });
     }
-
-    // UserModel.updateUser({ id: userId }, payload)
-    //   .then(() => {
-    //     return UserModel.findUser({ id: userId });
-    //   })
-    //   .then((user) => {
-    //     return res.status(200).json({
-    //       status: true,
-    //       data: user.toJSON(),
-    //     });
-    //   })
-    //   .catch((err) => {
-    //     return res.status(500).json({
-    //       status: false,
-    //       error: err,
-    //     });
-    //   });
   },
 
   deleteUser: (req, res) => {

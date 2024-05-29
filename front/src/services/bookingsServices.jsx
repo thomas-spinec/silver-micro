@@ -63,6 +63,17 @@ export const bookingActions = {
     }
   },
 
+  //FIND BY USER
+  async findByUser() {
+    try {
+      const response = await instance.get("/booking/byUser");
+      return response.data;
+    } catch (err) {
+      console.log(err);
+      return err.response.data;
+    }
+  },
+
   //FIND BY RESTAURANT
   async findByRestaurant(restaurantId) {
     try {

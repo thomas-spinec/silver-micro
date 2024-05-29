@@ -36,6 +36,21 @@ const UserProvider = ({ children }) => {
     setConnected(false);
   };
 
+  const handleUpdate = (data) => {
+    console.log("data", data);
+    localStorage.setItem("email", data.email);
+    localStorage.setItem("firstname", data.firstname);
+    localStorage.setItem("lastname", data.lastname);
+    localStorage.setItem("phone", data.phone);
+    setUserContext({
+      ...userContext,
+      email: data.email,
+      firstname: data.firstname,
+      lastname: data.lastname,
+      phone: data.phone,
+    });
+  };
+
   useEffect(() => {
     if (
       userContext?.email &&
@@ -86,6 +101,7 @@ const UserProvider = ({ children }) => {
           connected,
           setConnected,
           handleLogout,
+          handleUpdate,
         }}
       >
         {children}
@@ -99,6 +115,7 @@ const UserProvider = ({ children }) => {
       connected,
       setConnected,
       handleLogout,
+      handleUpdate,
     ]
   );
 };
