@@ -17,10 +17,17 @@ function UserBookings() {
         message: null,
       });
     } else {
-      setError({
-        status: false,
-        message: data.error.message,
-      });
+      if (data.error === "Invalid access token provided, please login again.") {
+        setError({
+          status: false,
+          message: "Vous n'êtes pas connecté",
+        });
+      } else {
+        setError({
+          status: false,
+          message: data.error.message,
+        });
+      }
     }
   };
 
@@ -66,10 +73,13 @@ function UserBookings() {
     }
   }, [bookings]);
 
+  useEffect(() => {
+    console.log(error);
+  }, [error]);
+
   return (
     <div>
       <h2>Mes réservations</h2>
-
       {/* si la length =0  */}
       {bookings?.length === 0 && <p>Vous n'avez pas encore de réservations</p>}
       {/* si la length >0 */}
@@ -78,8 +88,11 @@ function UserBookings() {
           {displayBookings(bookings)}
         </div>
       )}
-      {/* si error */}
-      {error.status === false && <p>{error.message}</p>}
+      {error.status === false && (
+        <p className="text-Primary-Purple/400 font-['ClashDisplay-SemiBold']">
+          {error.message}
+        </p>
+      )}
     </div>
   );
 }

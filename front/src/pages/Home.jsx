@@ -21,7 +21,6 @@ function Home() {
               <h2>{userContext?.firstname}</h2>
               <p>Your email is {userContext?.email}</p>
             </div>
-            <button onClick={handleLogout}>Logout</button>
           </div>
         )}
 
