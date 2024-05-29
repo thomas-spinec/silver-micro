@@ -35,6 +35,11 @@ const RestaurantModel = {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  image: {
+    type: DataTypes.STRING,
+    allowNull: true,
+    defaultValue: "/image/default.png",
+  },
 };
 
 module.exports = {
@@ -56,6 +61,21 @@ module.exports = {
     });
   },
 
+  findAllCities: () => {
+    return this.model.findAll({
+      attributes: ["city"],
+      group: ["city"],
+    });
+  },
+
+  findRestaurantsByCity: (city) => {
+    return this.model.findAll({
+      where: {
+        city: city,
+      },
+    });
+  },
+
   updateRestaurant: (query, updatedValue) => {
     return this.model.update(updatedValue, {
       where: query,
@@ -66,8 +86,14 @@ module.exports = {
     if (query) {
       return this.model.findAll({
         where: {
-          name: {
-            [Op.like]: `%${query.name}%`,
+          [Op.or]: {
+            name: {
+              [Op.like]: `%${query.name}%`,
+            },
+
+            city: {
+              [Op.like]: `%${query.name}%`,
+            },
           },
         },
       });

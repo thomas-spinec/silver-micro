@@ -76,6 +76,10 @@ function ModalBooking({ setModalBooking, id, maxCapacity }) {
     }
   };
 
+  useEffect(() => {
+    console.log("BOOKINGS", bookings);
+  }, [bookings]);
+
   const book = async (dataToPost) => {
     const data = await bookingActions.create(dataToPost);
     if (data.status) {
@@ -143,7 +147,7 @@ function ModalBooking({ setModalBooking, id, maxCapacity }) {
           {date && (
             <div className="flex gap-2 flex-wrap ">
               {timeArray.map((time, i) => {
-                let nbParticipantsPerTime = nbParticipants;
+                // let nbParticipantsPerTime = nbParticipants;
                 isBookingAvailable(time);
                 let isDisabled = timeObject[i].isDisabled;
 
@@ -190,7 +194,7 @@ function ModalBooking({ setModalBooking, id, maxCapacity }) {
             type="button"
             disabled={!date || !hour}
             onClick={() => {
-              let formattedDate = date + " " + hour;
+              let formattedDate = date + "T" + hour + ":00.000Z";
               let dataToPost = {
                 restaurantId: id,
                 numberOfGuests: nbParticipants,

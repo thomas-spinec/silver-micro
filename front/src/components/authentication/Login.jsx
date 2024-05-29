@@ -82,6 +82,7 @@ function Login({ changeForm, mail, setMail, firstname, setFirstname }) {
           email: res.data.user.email,
           firstname: res.data.user.firstname,
           lastname: res.data.user.lastname,
+          phone: res.data.user.phone,
           role: res.data.user.role,
           id_user: res.data.user.id,
         });

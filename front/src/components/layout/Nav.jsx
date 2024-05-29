@@ -7,7 +7,7 @@ import { UserContext } from "../../context/userContext";
 import Logo from "/logos/Logo.svg";
 
 function Nav() {
-  const { connected } = useContext(UserContext);
+  const { connected, handleLogout } = useContext(UserContext);
   const [isMobile, setIsMobile] = useState(false);
   const size = useWindowSize();
 
@@ -33,6 +33,9 @@ function Nav() {
               </li>
               <li>
                 <Link to="/account">Account</Link>
+              </li>
+              <li>
+                <button onClick={handleLogout}>Logout</button>
               </li>
             </>
           ) : (
