@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { bookingActions } from "../../services/bookingsServices";
 
-function UserBookings() {
+function UserBookings({ connected, setConnected }) {
   const [bookings, setBookings] = useState();
   const [error, setError] = useState({
     status: null,
@@ -22,6 +22,7 @@ function UserBookings() {
           status: false,
           message: "Vous n'êtes pas connecté",
         });
+        setConnected(false);
       } else {
         setError({
           status: false,
@@ -65,7 +66,7 @@ function UserBookings() {
 
   useEffect(() => {
     fetchBookings();
-  }, []);
+  }, [connected]);
 
   useEffect(() => {
     if (bookings) {
@@ -74,7 +75,14 @@ function UserBookings() {
   }, [bookings]);
 
   useEffect(() => {
-    console.log(error);
+    if (error.status === false) {
+      setTimeout(() => {
+        setError({
+          status: null,
+          message: null,
+        });
+      }, 3000);
+    }
   }, [error]);
 
   return (

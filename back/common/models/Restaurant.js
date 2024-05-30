@@ -104,4 +104,13 @@ module.exports = {
     }
     return this.model.findAll();
   },
+
+  findAllRestaurantsByManager: (managerId) => {
+    return this.model.findAll({
+      include: ["managers"],
+      where: {
+        "$managers.userId$": managerId,
+      },
+    });
+  },
 };

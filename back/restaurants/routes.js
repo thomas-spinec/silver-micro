@@ -15,6 +15,12 @@ router.get("/find/:restaurantId", RestaurantController.getRestaurant);
 
 router.get("/all", RestaurantController.getAllRestaurants);
 
+router.get(
+  "/byManager",
+  [isAuthenticatedMiddleware.check],
+  RestaurantController.getAllRestaurantsByManager
+);
+
 router.get("/byCity/:city", RestaurantController.getRestaurantsByCity);
 
 router.get("/allCities", RestaurantController.getAllCities);
