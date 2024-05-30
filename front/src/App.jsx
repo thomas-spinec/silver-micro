@@ -3,9 +3,9 @@ import Restaurants from "./components/restaurants/Restaurants";
 import Authentication from "./pages/Authentication";
 import Home from "./pages/Home";
 import Layout from "./pages/Layout";
-import Restau from "./pages/Restau";
-import Profil from "./pages/Profil";
 import NoPage from "./pages/NoPage";
+import Profil from "./pages/Profil";
+import Restau from "./pages/Restau";
 
 function App() {
   return (

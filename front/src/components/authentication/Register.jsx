@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import WomenEating from "/images/womenEating.jpg";
-import userLogo from "/logos/userLogo.png";
 import { UserContext } from "../../context/userContext";
 import { userActions } from "../../services/userServices";
+import WomenEating from "/images/womenEating.jpg";
+import userLogo from "/logos/userLogo.png";
 
 function Register({ changeForm, mail, setMail, firstname, setFirstname }) {
   const { userContext, setUserContext } = useContext(UserContext);
@@ -225,7 +225,7 @@ function Register({ changeForm, mail, setMail, firstname, setFirstname }) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center gap-12">
+    <div className="flex flex-col items-center justify-center gap-4">
       <div className="w-full relative h-full flex justify-center flex-col items-center mb-4">
         <img
           src={WomenEating}
@@ -239,13 +239,13 @@ function Register({ changeForm, mail, setMail, firstname, setFirstname }) {
         />
       </div>
       <div className="flex flex-col items-center">
-        <h3 className="font-bold text-xl pt-4">Bienvenue sur TheSpoune</h3>
+        <h3 className="font-bold text-xl pt-2">Bienvenue sur TheSpoune</h3>
         <p className="font-bold text-Primary-blue/800">{mail}</p>
         <p className="italic font-bold">
           Créez votre compte et réservez rapidement une table
         </p>
       </div>
-      <form className="flex flex-col border rounded-[15px] p-2 gap-4 w-[80%]">
+      <form className="flex flex-col border rounded-[15px] px-2 gap-2 w-[80%]">
         <div className="">
           <div className="">
             {/* NAME */}
@@ -254,7 +254,7 @@ function Register({ changeForm, mail, setMail, firstname, setFirstname }) {
                 Nom
               </label>
               <input
-                className="border-2 border-Washed-blue/300 rounded-[10px] p-2"
+                className="border-2 border-Washed-blue/300 rounded-[10px] px-2"
                 type="text"
                 id="lastname"
                 name="lastname"
