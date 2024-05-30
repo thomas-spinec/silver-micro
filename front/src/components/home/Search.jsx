@@ -1,7 +1,6 @@
 function Search({ setSearch }) {
   return (
-    <div className="flex h-full justify-center items-center gap-4  divide-x">
-      <input className="h-full " type="text" disabled placeholder="Location" />
+    <div className="flex h-full justify-center items-center gap-4 ">
       <input
         className="h-full"
         type="text"
