@@ -146,6 +146,52 @@ module.exports = {
     }
   },
 
+  // ========================> GET ALL RESTAURANTS BY MANAGER
+  getAllRestaurantsByManager: async (req, res) => {
+    const { userId } = req.user;
+
+    ManagerModel.findManager({ userId })
+      .then((manager) => {
+        if (!manager) {
+          return res.status(404).json({
+            status: false,
+            error: {
+              message: "Manager not found",
+            },
+          });
+        }
+
+        RestaurantModel.findAllRestaurantsByManager(manager.id)
+          .then((restaurants) => {
+            if (!restaurants || restaurants.length === 0) {
+              return res.status(404).json({
+                status: false,
+                error: {
+                  message: "Aucun restaurant trouvé",
+                },
+              });
+            }
+
+            return res.status(200).json({
+              status: true,
+              data: restaurants.map((restaurant) => restaurant.toJSON()),
+            });
+          })
+          .catch((err) => {
+            return res.status(500).json({
+              status: false,
+              error: err,
+            });
+          });
+      })
+      .catch((err) => {
+        return res.status(500).json({
+          status: false,
+          error: err,
+        });
+      });
+  },
+
   // ========================> GET ALL CITIES
   getAllCities: async (req, res) => {
     try {
