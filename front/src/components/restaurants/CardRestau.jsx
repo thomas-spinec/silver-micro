@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 function CardRestau({ restaurant }) {
   const navigate = useNavigate();
-  console.log(restaurant);
+  console.log("here", restaurant);
   return (
     <div
       onClick={() => navigate(`/restaurant/${restaurant.id}`)}

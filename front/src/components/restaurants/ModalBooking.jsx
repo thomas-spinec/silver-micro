@@ -169,8 +169,8 @@ function ModalBooking({ setModalBooking, id, maxCapacity }) {
                       disabled={timeObject[i].isDisabled}
                       className={`${
                         isDisabled
-                          ? "bg-Washed-purple/500 text-Neutrals/7"
-                          : "bg-transparent text-Primary-blue/300"
+                          ? "bg-Washed-purple/500 text-Neutrals/7 cursor-not-allowed hover:none "
+                          : "bg-transparent text-Primary-blue/300 "
                       }
                         ${
                           time === hour

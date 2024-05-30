@@ -81,18 +81,32 @@ module.exports = {
     ).toISOString();
 
     console.log(gmtDate);
-    return this.model.findAll({
-      where: {
-        [Op.and]: {
-          userId: `${query.userId}`,
 
-          bookingDate: {
-            [Op.gt]: `${gmtDate}`,
+    if (query.restaurantId) {
+      return this.model.findAll({
+        where: query,
+        order: [["bookingDate", "ASC"]],
+        include: ["restaurant"],
+      });
+    } else if (query.userId) {
+      return this.model.findAll({
+        where: {
+          [Op.and]: {
+            userId: `${query.userId}`,
+
+            bookingDate: {
+              [Op.gt]: `${gmtDate}`,
+            },
           },
         },
-      },
-      order: [["bookingDate", "ASC"]],
-      include: ["restaurant"],
-    });
+        order: [["bookingDate", "ASC"]],
+        include: ["restaurant"],
+      });
+    } else {
+      return this.model.findAll({
+        where: query,
+        include: ["restaurant"],
+      });
+    }
   },
 };
