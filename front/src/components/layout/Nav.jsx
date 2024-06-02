@@ -1,4 +1,4 @@
-import { CircleUserRound } from "lucide-react";
+import { CircleUserRound, ChefHat, LogOut } from "lucide-react";
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -25,17 +25,35 @@ function Nav() {
         <Link to="/">
           <img src={Logo} alt="Logo" className="h-[100%] pt-2" />
         </Link>
-        <ul className="flex place-items-center gap-2">
+        <ul className="flex place-items-center gap-4">
           {connected ? (
             <>
               <li>
-                <Link to="/">Inscrire mon restaurant</Link>
+                <Link to="/">
+                  {isMobile ? (
+                    <ChefHat className="h-8 w-8 text-Primary-blue/500" />
+                  ) : (
+                    "Inscrire mon restaurant"
+                  )}
+                </Link>
               </li>
               <li>
-                <Link to="/account">Account</Link>
+                <Link to="/account">
+                  {isMobile ? (
+                    <CircleUserRound className="h-8 w-8 text-Primary-blue/500" />
+                  ) : (
+                    "Compte"
+                  )}
+                </Link>
               </li>
               <li>
-                <button onClick={handleLogout}>Logout</button>
+                <Link onClick={handleLogout}>
+                  {isMobile ? (
+                    <LogOut className="h-8 w-8 text-Primary-blue/500" />
+                  ) : (
+                    "Déconnexion"
+                  )}
+                </Link>
               </li>
             </>
           ) : (
