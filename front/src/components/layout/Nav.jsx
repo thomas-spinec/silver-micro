@@ -29,7 +29,10 @@ function Nav() {
           {connected ? (
             <>
               <li>
-                <Link to="/">
+                <Link
+                  to="/"
+                  className="bg-clip-text text-transparent bg-gradient-to-r from-Primary-Purple/300 to-Primary-blue/600 text-lg font-[ClashDisplay-SemiBold]"
+                >
                   {isMobile ? (
                     <ChefHat className="h-8 w-8 text-Primary-blue/500" />
                   ) : (
@@ -38,7 +41,10 @@ function Nav() {
                 </Link>
               </li>
               <li>
-                <Link to="/account">
+                <Link
+                  to="/account"
+                  className="bg-clip-text text-transparent bg-gradient-to-r from-Primary-Purple/300 to-Primary-blue/600 text-lg font-[ClashDisplay-SemiBold]"
+                >
                   {isMobile ? (
                     <CircleUserRound className="h-8 w-8 text-Primary-blue/500" />
                   ) : (
@@ -47,7 +53,10 @@ function Nav() {
                 </Link>
               </li>
               <li>
-                <Link onClick={handleLogout}>
+                <Link
+                  className="bg-clip-text text-transparent bg-gradient-to-r from-Primary-Purple/300 to-Primary-blue/600 text-lg font-[ClashDisplay-SemiBold]"
+                  onClick={handleLogout}
+                >
                   {isMobile ? (
                     <LogOut className="h-8 w-8 text-Primary-blue/500" />
                   ) : (
