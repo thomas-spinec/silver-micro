@@ -70,7 +70,7 @@ function UserBookings({ connected, setConnected }) {
 
   useEffect(() => {
     if (bookings) {
-      console.log(bookings);
+      // console.log(bookings);
     }
   }, [bookings]);
 

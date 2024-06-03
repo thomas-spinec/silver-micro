@@ -37,7 +37,6 @@ const UserProvider = ({ children }) => {
   };
 
   const handleUpdate = (data) => {
-    console.log("data", data);
     localStorage.setItem("email", data.email);
     localStorage.setItem("firstname", data.firstname);
     localStorage.setItem("lastname", data.lastname);
@@ -81,14 +80,6 @@ const UserProvider = ({ children }) => {
       setConnected(true);
     }
   }, [userContext]);
-
-  useEffect(() => {
-    console.log("user context", userContext);
-  }, [userContext]);
-
-  useEffect(() => {
-    console.log("connected", connected);
-  }, [connected]);
 
   return useMemo(
     () => (

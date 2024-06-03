@@ -25,7 +25,6 @@ function UserInfo() {
 
   // handle user update (choice = profile)
   const updateUser = async () => {
-    console.log(user);
     const data = await userActions.updateUser(user, "profile");
     if (data.status) {
       handleUpdate(data.data);

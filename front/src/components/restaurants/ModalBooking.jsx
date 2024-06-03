@@ -76,14 +76,9 @@ function ModalBooking({ setModalBooking, id, maxCapacity }) {
     }
   };
 
-  useEffect(() => {
-    console.log("BOOKINGS", bookings);
-  }, [bookings]);
-
   const book = async (dataToPost) => {
     const data = await bookingActions.create(dataToPost);
     if (data.status) {
-      console.log("BOOKING CREATED", data);
       setError({
         status: true,
         message: "Réservation effectuée, vous allez être redirigé.",

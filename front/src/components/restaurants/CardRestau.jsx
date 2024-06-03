@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 function CardRestau({ restaurant }) {
   const navigate = useNavigate();
-  console.log("here", restaurant);
   return (
     <div
       onClick={() => navigate(`/restaurant/${restaurant.id}`)}
@@ -35,6 +34,11 @@ function CardRestau({ restaurant }) {
             </span>
             <span className="text-sm text-Washed-blue/700">
               {restaurant.zipCode}
+            </span>
+          </div>
+          <div className="flex justify-center items-center gap-1">
+            <span className="text-xl bg-clip-text text-transparent bg-gradient-to-r from-Primary-Purple/300 to-Primary-blue/500 font-[ClashDisplay-Bold]">
+              {restaurant.city}
             </span>
           </div>
         </div>

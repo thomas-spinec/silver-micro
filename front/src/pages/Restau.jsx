@@ -32,7 +32,6 @@ function Restau() {
   useEffect(() => {
     if (restaurant) {
       setMaxCapacity(restaurant.data.maxCapacity);
-      console.log("RESTAURANT", restaurant);
     }
   }, [restaurant]);
 

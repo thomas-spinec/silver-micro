@@ -35,7 +35,6 @@ function Slider() {
       </div>
     );
   }
-  console.log(restaurants.data.id);
   return (
     <div className="container flex flex-col space-x-4 py-8 bg-Washed-purple/50">
       <h1 className="mb-4">Nos Restaurants Partenaires</h1>
@@ -64,7 +63,6 @@ function Slider() {
         className="swiper_container"
       >
         {restaurants.data.map((sliderInfo, i) => {
-          console.log(sliderInfo.id);
           if (i < 5) {
             return (
               <SwiperSlide>
